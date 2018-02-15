@@ -1,0 +1,91 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="isLoggedIn">
+    <h2>Hi, {{users.name}} ({{users.email}})</h2>
+    <p>
+      Gender: {{users.gender}}
+    </p>
+    <p>
+      <img src="{{users.picture.data.url}}" width="100" alt="{{users.name}}"/>
+    </p>
+    <p>
+      <button ion-button icon-right (click)="logoutFromFacebook()">
+        Logout
+      </button>
+    </p>
+  </div>
+
+
+  <div class="login-container" *ngIf="!isLoggedIn">
+    <div class="login-header">
+      <h1>Login with Facebook or Google.</h1>
+    </div>
+    <div class="login-buttons">
+      <button class="facebook" ion-button icon-right (click)="loginWithFacebook()">
+        Login with
+        <ion-icon name="logo-facebook"></ion-icon>
+      </button>
+
+      <button class="g-plus" ion-button icon-right (click)="loginWithGPlus()">
+        Login with
+        <ion-icon name="logo-googleplus"></ion-icon>
+      </button>
+    </div>
+
+    <div class="horizontal-line or">
+      <h2>
+        <span class="line">
+          <span class="dot"></span>
+        </span>
+        Or
+      </h2>
+    </div>
+    <div class="login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="form-wrapper">
+
+        <div class="form-group block"
+             [ngClass]="{'has-error': submitted && (loginForm.controls.email.errors)}">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email">
+          <p>
+            <span *ngIf="submitted && loginForm.controls.email.errors?.email">Enter a valid email.</span>
+            <span *ngIf="submitted && loginForm.controls.email.errors?.required">Email is required</span>
+          </p>
+        </div>
+
+        <div class="form-group block"
+             [ngClass]="{'has-error': submitted && (loginForm.controls.password.errors)}">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password">
+          <p *ngIf="submitted && loginForm.controls.password.errors?.required">Password is required</p>
+        </div>
+        <div class="text-center">
+          <div class="checkbox ">
+            <label>
+              <input type="checkbox" formControlName="rememberMe"/> Remember me
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-default">Login</button>
+          <br/><br/><a>Forgot password?</a>
+        </div>
+        <br/>
+        <div class="text-center">Don't have an account? <a href="#/sign-up" (click)="onSignUpClick()">Register with
+          us.</a></div>
+      </form>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,30 @@
+page-login {
+  .login-container {
+    background: #FAF0FF;
+    .login-header {
+      text-align: center;
+      h1 {
+        font-size: 12px;
+      }
+    }
+
+    .login-buttons {
+      display: inline-flex;
+      .g-plus {
+        background: red;
+      }
+    }
+
+    .horizontal-line {
+      text-align: center;
+    }
+
+    .login-form {
+      border: solid #69717d;
+      border-radius: 20px 15px 10px 15px;
+      form {
+        margin: 0 auto;
+      }
+    }
+  }
+}
