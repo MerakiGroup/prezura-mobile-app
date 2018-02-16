@@ -86,4 +86,8 @@
         <variable name="APP_NAME" value="prezuraApp" />
     </plugin>
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-googleplus" spec="^5.2.1">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.489940237658-cggvu6uo1u2ip0or1gjqnd5hnfnfofh3" />
+    </plugin>
+    <allow-navigation href="http://10.101.2.38:8101" />
 </widget>

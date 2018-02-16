@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
-import {Facebook} from '@ionic-native/facebook'
+
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,10 @@ import {Facebook} from '@ionic-native/facebook'
     IonicPageModule.forChild(LoginPage),
   ],
   providers: [
-    Facebook
+    Facebook,
+    GooglePlus
   ]
 })
-export class LoginPageModule {}
+
+export class LoginPageModule {
+}

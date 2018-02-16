@@ -14,15 +14,15 @@
 
 <ion-content padding>
   <div *ngIf="isLoggedIn">
-    <h2>Hi, {{users.name}} ({{users.email}})</h2>
+    <h2>Hi, {{user.name}} ({{user.email}})</h2>
     <p>
-      Gender: {{users.gender}}
+      Gender: {{user.gender}}
     </p>
     <p>
-      <img src="{{users.picture.data.url}}" width="100" alt="{{users.name}}"/>
+      <img src="{{user.imageUrl}}" width="100" alt="{{user.name}}"/>
     </p>
     <p>
-      <button ion-button icon-right (click)="logoutFromFacebook()">
+      <button ion-button icon-right (click)="onLogoutClick()">
         Logout
       </button>
     </p>
