@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController } from 'ionic-angular';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { GooglePlus } from '@ionic-native/google-plus';
 import { AlertData, UserAuthResponse } from './login.models';
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { HomePage } from '../home/home';
 
 
 /**
@@ -20,67 +21,22 @@ export class LoginPage {
 
   public user: UserAuthResponse;
   public loginForm: FormGroup;
+  public isSubmitted: boolean;
 
-  private loginResponse: FacebookLoginResponse;
   private isLoggedIn: boolean;
   private isFBLogin: boolean;
 
   constructor(public navCtrl: NavController,
-              private fb: Facebook,
               public alertCtrl: AlertController,
               private formBuilder: FormBuilder,
+              private fb: Facebook,
               private googlePlus: GooglePlus) {
 
     this.isLoggedIn = false;
+    this.isSubmitted = false;
     this.buildForm();
-    fb.getLoginStatus()
-      .then(res => {
-        if (res.status === 'connect') {
-          this.isLoggedIn = true;
-        } else {
-          this.isLoggedIn = false;
-        }
-      }).catch((error) => {
-      this.showError(error);
-    });
   }
 
-  public loginWithFacebook(): void {
-    this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => {
-        this.loginResponse = res;
-        if (res.status === 'connected') {
-          this.isLoggedIn = true;
-          this.getUserDetail(res.authResponse.userID);
-        } else {
-          this.isLoggedIn = false;
-        }
-      }).catch((error) => {
-      this.showError(error);
-    });
-  }
-
-  /**
-   * Login with google plus api.
-   * Invokes when the login with google plus button clicked.
-   */
-  public loginWithGPlus(): void {
-    this.googlePlus.login({})
-      .then(res => {
-        this.isFBLogin = false;
-        this.user = {
-          id: res.userId,
-          firstName: res.displayName,
-          lastName: res.familyName,
-          gender: '',
-          email: res.email,
-          imageUrl: res.imageUrl
-        };
-        this.isLoggedIn = true;
-      }).catch((error) => {
-      this.showError(error);
-    });
-  }
 
   /**
    * Event handler for logout button click.
@@ -93,7 +49,8 @@ export class LoginPage {
    * Event handler for login form submission.
    */
   public onSubmit(): void {
-
+    this.isSubmitted = true;
+    this.navCtrl.push(HomePage);
   }
 
   /**
@@ -178,7 +135,7 @@ export class LoginPage {
     this.loginForm = this.formBuilder.group({
       email: [null, Validators.compose([Validators.required, Validators.email])],
       password: [null, Validators.required],
-      rememberMe: [true]
+      rememberMe: [false]
     });
   }
 

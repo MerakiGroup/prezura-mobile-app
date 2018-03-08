@@ -1,6 +1,5 @@
 page-login {
   .login-container {
-    background: #FAF0FF;
     .login-header {
       text-align: center;
       h1 {
@@ -16,15 +15,22 @@ page-login {
     }
 
     .horizontal-line {
+      margin-top: 20%;
       text-align: center;
+      h2 {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #000;
+        line-height: 0.1em;
+        margin: 10px 0 20px;
+      }
+      h2 span {
+        background: #fff;
+        padding: 0 10px;
+      }
     }
 
     .login-form {
-      border: solid #69717d;
-      border-radius: 20px 15px 10px 15px;
-      form {
-        margin: 0 auto;
-      }
     }
   }
 }
