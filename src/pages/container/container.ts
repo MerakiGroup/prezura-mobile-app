@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Tabs, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Tabs, Nav, MenuController } from 'ionic-angular';
 
 import { Page } from 'ionic-angular/navigation/nav-util';
 import { HomePage } from '../home/home';
 import { StatsPage } from '../stats/stats';
 import { NotificationsPage } from '../notifications/notifications';
 import { GuideMePage } from '../guide-me/guide-me';
+import { GlobalDataService } from '../../providers/global-data-service/global-data-service';
 
 @IonicPage()
 @Component({
@@ -24,15 +25,20 @@ export class ContainerPage {
 
   public rootPage: any = StatsPage;
 
-  public pages: Array<{title: string, page: any}>;
+  public pages: Array<{ title: string, page: any }>;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private globalDataService: GlobalDataService, public menuCtrl: MenuController) {
     this.pages = [
       { title: 'Home', page: HomePage },
       { title: 'Stats', page: StatsPage },
-      { title: 'Alerts', page: NotificationsPage},
+      { title: 'Alerts', page: NotificationsPage },
       { title: 'Guide Me', page: GuideMePage },
     ];
+    this.globalDataService.getMenuOpenState().subscribe((open) => {
+      if (open) {
+        this.menuCtrl.open();
+      }
+    })
   }
 
   ionViewDidEnter() {
@@ -42,7 +48,7 @@ export class ContainerPage {
 
   openPage(page) {
     debugger;
-    const index =this.pages.findIndex((item) => {
+    const index = this.pages.findIndex((item) => {
       return item.title == page.title;
     });
     this.tabRef.select(index);
