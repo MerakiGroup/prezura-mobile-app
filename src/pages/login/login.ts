@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertData, UserAuthResponse } from './login.models';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { HomePage } from '../home/home';
+import { ContainerPage } from '../container/container';
 
 
 /**
@@ -50,7 +50,7 @@ export class LoginPage {
    */
   public onSubmit(): void {
     this.isSubmitted = true;
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(ContainerPage);
   }
 
   /**
