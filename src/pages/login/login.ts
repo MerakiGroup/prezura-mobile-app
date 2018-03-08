@@ -3,9 +3,10 @@ import { AlertController, IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertData, UserAuthResponse } from './login.models';
-import { Facebook } from '@ionic-native/facebook';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { ContainerPage } from '../container/container';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 /**
@@ -25,16 +26,66 @@ export class LoginPage {
 
   private isLoggedIn: boolean;
   private isFBLogin: boolean;
+  private loginResponse: FacebookLoginResponse;
 
   constructor(public navCtrl: NavController,
               public alertCtrl: AlertController,
               private formBuilder: FormBuilder,
               private fb: Facebook,
-              private googlePlus: GooglePlus) {
+              private googlePlus: GooglePlus,
+              private nativeStorage: NativeStorage) {
 
     this.isLoggedIn = false;
     this.isSubmitted = false;
     this.buildForm();
+    fb.getLoginStatus()
+      .then(res => {
+        if (res.status === 'connect') {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      }).catch((error) => {
+      this.showError(error);
+    });
+  }
+
+  public loginWithFacebook(): void {
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+      .then((res: FacebookLoginResponse) => {
+        this.loginResponse = res;
+        if (res.status === 'connected') {
+          this.isLoggedIn = true;
+          this.getUserDetail(res.authResponse.userID);
+        } else {
+          this.isLoggedIn = false;
+        }
+      }).catch((error) => {
+      this.showError(error);
+    });
+  }
+
+  /**
+   * Login with google plus api.
+   * Invokes when the login with google plus button clicked.
+   */
+  public loginWithGPlus(): void {
+    this.googlePlus.login({})
+      .then(res => {
+        this.isFBLogin = false;
+        this.user = {
+          id: res.userId,
+          firstName: res.givenName,
+          lastName: res.familyName,
+          gender: '',
+          email: res.email,
+          imageUrl: res.imageUrl
+        };
+        this.saveUserToNativeStorage();
+        this.isLoggedIn = true;
+      }).catch((error) => {
+      this.showError(error);
+    });
   }
 
 
@@ -110,6 +161,7 @@ export class LoginPage {
           email: res.email,
           imageUrl: res.picture.data.url
         };
+        this.saveUserToNativeStorage();
       }).catch((error) => {
       this.showError(error);
     });
@@ -149,6 +201,13 @@ export class LoginPage {
       subTitle: error
     };
     this.showAlert(alertData);
+  }
+
+  /**
+   * Responsible for storing user data in native storage
+   */
+  private saveUserToNativeStorage(): void {
+    this.nativeStorage.setItem('user', this.user);
   }
 
 }
