@@ -1,12 +1,15 @@
 <ion-menu [content]="content" type="overlay">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-avatar class="avatar">
+        <img [src]="user?.imageUrl">
+      </ion-avatar>
+      <ion-title>{{user?.firstName}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
+    <ion-list no-lines>
       <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">
         {{page.title}}
       </button>

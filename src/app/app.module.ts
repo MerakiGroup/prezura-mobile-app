@@ -13,6 +13,8 @@ import { StatsPageModule } from '../pages/stats/stats.module';
 import { NotificationsPageModule } from '../pages/notifications/notifications.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ContainerPageModule } from '../pages/container/container.module';
+import { IonicStorageModule } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { ContainerPageModule } from '../pages/container/container.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     LoginPageModule,
     StatsPageModule,
     GuideMePageModule,
@@ -39,7 +42,8 @@ import { ContainerPageModule } from '../pages/container/container.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GlobalDataService
+    GlobalDataService,
+    NativeStorage
   ]
 })
 export class AppModule {}
