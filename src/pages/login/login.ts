@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { AlertData, UserAuthResponse } from './login.models';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { GooglePlus } from '@ionic-native/google-plus';
-import { ContainerPage } from '../container/container';
 import { NativeStorage } from '@ionic-native/native-storage';
 
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { UserAuthResponse } from './login.models';
+import { ContainerPage } from '../container/container';
+import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
+
+import { animations } from './login.animations';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Class representing the Login page.
@@ -15,77 +17,94 @@ import { NativeStorage } from '@ionic-native/native-storage';
  */
 @IonicPage()
 @Component({
+  animations: animations,
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage implements OnDestroy {
 
   public user: UserAuthResponse;
   public loginForm: FormGroup;
   public isSubmitted: boolean;
+  public isLoggedInClicked: boolean;
+  public isKeyBoardOpen: boolean;
+  public isPasswordField: boolean;
 
   private isLoggedIn: boolean;
-  private isFBLogin: boolean;
-  private loginResponse: FacebookLoginResponse;
+  private userSubscription: Subscription;
+  private keyBoardSubscription: Subscription;
 
   constructor(public navCtrl: NavController,
               public alertCtrl: AlertController,
               private formBuilder: FormBuilder,
-              private fb: Facebook,
-              private googlePlus: GooglePlus,
+              private userAuthService: UserAuthService,
               private nativeStorage: NativeStorage) {
 
     this.isLoggedIn = false;
     this.isSubmitted = false;
+    this.isLoggedInClicked = false;
+    this.isKeyBoardOpen = false;
+    this.isPasswordField = true;
     this.buildForm();
-    fb.getLoginStatus()
-      .then(res => {
-        if (res.status === 'connect') {
-          this.isLoggedIn = true;
-        } else {
-          this.isLoggedIn = false;
-        }
-      }).catch((error) => {
-      this.showError(error);
+    // fb.getLoginStatus()
+    //   .then(res => {
+    //     if (res.status === 'connect') {
+    //       this.isLoggedIn = true;
+    //     } else {
+    //       this.isLoggedIn = false;
+    //     }
+    //   }).catch((error) => {
+    //   this.showError(error);
+    // });
+    this.userAuthService.getLoginState().subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn) {
+        this.navCtrl.push(ContainerPage);
+      }
     });
+    this.userLoggedIn();
   }
 
-  public loginWithFacebook(): void {
-    this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => {
-        this.loginResponse = res;
-        if (res.status === 'connected') {
-          this.isLoggedIn = true;
-          this.getUserDetail(res.authResponse.userID);
-        } else {
-          this.isLoggedIn = false;
-        }
-      }).catch((error) => {
-      this.showError(error);
-    });
+  /**
+   * Event handler for input field focus event.
+   * @param eventPayLoad Event payload.
+   */
+  onFocus(eventPayLoad): void {
+    this.isKeyBoardOpen = true;
+  }
+
+  /**
+   * Event handler for input field blur event.
+   * @param eventPayLoad Event payload.
+   */
+  onBlur(eventPayLoad): void {
+    this.isKeyBoardOpen = false;
+  }
+
+  /**
+   * On component destroy.
+   */
+  public ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.keyBoardSubscription) {
+      this.keyBoardSubscription.unsubscribe();
+    }
+  }
+
+  /**
+   * responsible for using facebook api for login in the user.
+   */
+  public onFacebookLoginClick(): void {
+    this.userAuthService.loginWithFacebook();
   }
 
   /**
    * Login with google plus api.
    * Invokes when the login with google plus button clicked.
    */
-  public loginWithGPlus(): void {
-    this.googlePlus.login({})
-      .then(res => {
-        this.isFBLogin = false;
-        this.user = {
-          id: res.userId,
-          firstName: res.givenName,
-          lastName: res.familyName,
-          gender: '',
-          email: res.email,
-          imageUrl: res.imageUrl
-        };
-        this.saveUserToNativeStorage();
-        this.isLoggedIn = true;
-      }).catch((error) => {
-      this.showError(error);
-    });
+  public onGoogleLoginClick(): void {
+    this.userAuthService.loginWithGoogle();
   }
 
 
@@ -93,7 +112,7 @@ export class LoginPage {
    * Event handler for logout button click.
    */
   public onLogoutClick(): void {
-    this.isFBLogin ? this.logoutFromFacebook() : this.logoutFromGPlus();
+    this.userAuthService.logOut();
   }
 
   /**
@@ -112,75 +131,6 @@ export class LoginPage {
   }
 
   /**
-   * Logout from google account.
-   * Invokes when logout button clicked.
-   */
-  private logoutFromGPlus(): void {
-    this.googlePlus.logout()
-      .then(res => {
-        this.user = null;
-        this.isLoggedIn = false;
-      }).catch((error) => {
-      this.showError(error);
-    });
-  }
-
-  /**
-   * Logout from facebook account.
-   * Invokes when logout button clicked.
-   */
-  private logoutFromFacebook() {
-    this.fb.logout()
-      .then(res => {
-        this.isLoggedIn = false;
-        this.user = null;
-      }).catch((error) => {
-      this.showError(error);
-    });
-  }
-
-  /**
-   * Get user detail by using facebook api.
-   * @param userId User ID.
-   */
-  private getUserDetail(userId) {
-    this.fb.api('/' + userId + '/?fields=id,email,name,picture,gender', ['public_profile'])
-      .then(res => {
-        const alertData: AlertData = {
-          title: 'Login Successful',
-          subTitle: 'Congratulations'
-        };
-        this.isFBLogin = true;
-        this.showAlert(alertData);
-        this.user = res;
-        this.user = {
-          id: userId,
-          firstName: res.name,
-          lastName: '',
-          gender: res.gender,
-          email: res.email,
-          imageUrl: res.picture.data.url
-        };
-        this.saveUserToNativeStorage();
-      }).catch((error) => {
-      this.showError(error);
-    });
-  }
-
-  /**
-   * Responsible for displaying a alert message.
-   * @param {AlertData} alertData Alert Data to be displayed.
-   */
-  private showAlert(alertData: AlertData) {
-    let alert = this.alertCtrl.create({
-      title: alertData.title,
-      subTitle: alertData.subTitle,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  /**
    * Build the login form.
    */
   private buildForm(): void {
@@ -192,22 +142,16 @@ export class LoginPage {
   }
 
   /**
-   * Responsible for displaying a alert with a error message.
-   * @param error Error.
+   * Getter for user loggedIn
+   * @returns {boolean} Return true if user is logged in.
    */
-  private showError(error): void {
-    const alertData: AlertData = {
-      title: 'Error',
-      subTitle: error
-    };
-    this.showAlert(alertData);
+  private userLoggedIn(): void {
+    this.nativeStorage.getItem('user').then((user) => {
+      if (user) {
+        this.navCtrl.push(ContainerPage);
+      }
+    }, (error) => {
+      // toDo
+    });
   }
-
-  /**
-   * Responsible for storing user data in native storage
-   */
-  private saveUserToNativeStorage(): void {
-    this.nativeStorage.setItem('user', this.user);
-  }
-
 }

@@ -5,15 +5,12 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
-
 @import "ionic.globals";
-
 
 // Shared Variables
 // --------------------------------------------------
@@ -21,9 +18,6 @@ $app-direction: ltr;
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
-
-
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -41,43 +35,43 @@ $app-direction: ltr;
 //  dark:       #222
 //);
 
-
 $colors: (
-  primary:    #00B795,
-  secondary:  #F7F8FA,
-  danger:     #f53d3d,
-  light:      #323244,
-  dark:       #23212B
+  primary: #00B795,
+  secondary: #F7F8FA,
+  danger: #f53d3d,
+  light: #323244,
+  dark: #23212B
 );
 
-$toolbar-background: map_get($colors,dark);
-$background-color: color($colors, light);
-$tabs-background: color($colors, dark);
+$background-color-light: #323244;
+$background-color-dark: #23212B;
+
+$toolbar-background: $background-color-dark;
+$background-color: $background-color-light;
+$tabs-background: $background-color-dark;
+
+// toolbar variables
+$toolbar-active: #00B795;
+$toolbar-text-color: #F7F8FA;
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-$tabs-ios-tab-icon-color-active: color($colors,primary);
-$tabs-ios-tab-text-color: color($colors,secondary);
-$toolbar-ios-title-text-color: color($colors,primary);
-
-
+$tabs-ios-tab-icon-color-active: $toolbar-active;
+$tabs-ios-tab-text-color: color($colors, secondary);
+$toolbar-ios-title-text-color: $toolbar-active;
 
 // App Material Design Variables
 // --------------------------------------------------
-$tabs-md-tab-icon-color-active: color($colors,primary);
-$tabs-md-tab-text-color: color($colors,secondary);
-$toolbar-md-title-text-color: color($colors,primary);
-$toolbar-md-title-text-color: color($colors,primary);
-$list-md-text-color: color($colors,secondary);
-
+$tabs-md-tab-icon-color-active: $toolbar-active;
+$tabs-md-tab-text-color: $toolbar-text-color;
+$toolbar-md-title-text-color: $toolbar-active;
+$toolbar-md-title-text-color: $toolbar-active;
+$list-md-text-color: $toolbar-text-color;
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -88,14 +82,12 @@ $list-md-text-color: color($colors,secondary);
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
 
 @import "ionic.ionicons";
-
 
 // Fonts
 // --------------------------------------------------

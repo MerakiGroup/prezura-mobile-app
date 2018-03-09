@@ -1,29 +1,41 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
+import { IonicStorageModule } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { LoginPageModule } from '../pages/login/login.module';
-import { GlobalDataService } from '../providers/global-data-service/global-data-service';
 import { GuideMePageModule } from '../pages/guide-me/guide-me.module';
 import { StatsPageModule } from '../pages/stats/stats.module';
 import { NotificationsPageModule } from '../pages/notifications/notifications.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ContainerPageModule } from '../pages/container/container.module';
-import { IonicStorageModule } from '@ionic/storage';
-import { NativeStorage } from '@ionic-native/native-storage';
 
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+
+import { GlobalDataService } from '../providers/global-data-service/global-data-service';
+import { UserAuthService } from '../providers/user-auth-service/user-auth-service';
 
 @NgModule({
+  bootstrap: [IonicApp],
   declarations: [
+    MyApp,
+    HomePage
+  ],
+  entryComponents: [
     MyApp,
     HomePage
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     LoginPageModule,
@@ -33,17 +45,16 @@ import { NativeStorage } from '@ionic-native/native-storage';
     ProfilePageModule,
     ContainerPageModule
   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage
-  ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     GlobalDataService,
-    NativeStorage
+    NativeStorage,
+    UserAuthService,
+    Facebook,
+    GooglePlus,
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

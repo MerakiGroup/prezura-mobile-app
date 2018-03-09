@@ -1,11 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Tabs, Nav } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
+
+import { Component, ViewChild } from '@angular/core';
+
+import { UserAuthResponse } from '../login/login.models';
+
 import { HomePage } from '../home/home';
 import { StatsPage } from '../stats/stats';
 import { NotificationsPage } from '../notifications/notifications';
 import { GuideMePage } from '../guide-me/guide-me';
-import { UserAuthResponse } from '../login/login.models';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { LoginPage } from '../login/login';
+
+import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
 
 @IonicPage()
 @Component({
@@ -29,7 +35,7 @@ export class ContainerPage {
   public user: UserAuthResponse;
 
   constructor(public navCtrl: NavController,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage, private userAuthService: UserAuthService) {
     this.pages = [
       { title: 'Home', page: HomePage },
       { title: 'Stats', page: StatsPage },
@@ -39,17 +45,23 @@ export class ContainerPage {
     this.getUserData();
   }
 
-  ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     this.tabRef.select(1);
     this.tabRef.select(0);
   }
 
-  openPage(page) {
+  public openPage(page): void {
     const index = this.pages.findIndex((item) => {
-      return item.title == page.title;
+      return item.title === page.title;
     });
     this.tabRef.select(index);
-    // this.nav.setRoot(page.component);
+  }
+
+  public onLogOutClick(): void {
+    this.userAuthService.logOut().then((res) => {
+      console.log(this.navCtrl.getViews());
+      this.navCtrl.pop();
+    });
   }
 
   private getUserData(): void {

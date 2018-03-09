@@ -1,36 +1,41 @@
 page-login {
-  .login-container {
-    .login-header {
-      text-align: center;
-      h1 {
-        font-size: 12px;
-      }
-    }
 
-    .login-buttons {
-      display: inline-flex;
-      .g-plus {
-        background: red;
+  .content {
+    ion-row {
+      &.logo-row {
+        height: 55%;
       }
-    }
-
-    .horizontal-line {
-      margin-top: 20%;
-      text-align: center;
-      h2 {
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid #000;
-        line-height: 0.1em;
-        margin: 10px 0 20px;
+      ion-col {
+        ion-avatar {
+          img {
+            margin: 0 auto;
+            margin-top: 14%;
+          }
+        }
+        button {
+          width: 100%;
+          text-transform: none;
+        }
+        .facebook {
+          background: #3B5998;
+        }
+        .g-plus {
+          background: #dd4b39;
+        }
+        .auth-btn {
+          border: solid white;
+          border-radius: 5%;
+        }
+        div {
+          color: white;
+          text-align: center;
+        }
+        form {
+          .submit-btn {
+            background: #00B98D;
+          }
+        }
       }
-      h2 span {
-        background: #fff;
-        padding: 0 10px;
-      }
-    }
-
-    .login-form {
     }
   }
 }
