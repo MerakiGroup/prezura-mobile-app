@@ -65,22 +65,6 @@ export class LoginPage implements OnDestroy {
   }
 
   /**
-   * Event handler for input field focus event.
-   * @param eventPayLoad Event payload.
-   */
-  onFocus(eventPayLoad): void {
-    this.isKeyBoardOpen = true;
-  }
-
-  /**
-   * Event handler for input field blur event.
-   * @param eventPayLoad Event payload.
-   */
-  onBlur(eventPayLoad): void {
-    this.isKeyBoardOpen = false;
-  }
-
-  /**
    * On component destroy.
    */
   public ngOnDestroy(): void {
@@ -128,6 +112,29 @@ export class LoginPage implements OnDestroy {
    */
   public onSignUpClick(): void {
 
+  }
+
+  /**
+   * Event handler for input field focus event.
+   * @param eventPayLoad Event payload.
+   */
+  public onFocus(eventPayLoad): void {
+    this.isKeyBoardOpen = true;
+  }
+
+  /**
+   * Event handler for input field blur event.
+   * @param eventPayLoad Event payload.
+   */
+  public onBlur(eventPayLoad): void {
+    this.isKeyBoardOpen = false;
+  }
+
+  /**
+   * Event handler for go back click.
+   */
+  public onGoBackClick(): void {
+    this.isLoggedInClicked = false;
   }
 
   /**

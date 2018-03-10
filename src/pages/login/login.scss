@@ -9,12 +9,15 @@ page-login {
         ion-avatar {
           img {
             margin: 0 auto;
-            margin-top: 14%;
           }
         }
         button {
           width: 100%;
           text-transform: none;
+        }
+        .back-btn {
+          width: 10%;
+          float: left;
         }
         .facebook {
           background: #3B5998;

@@ -1,5 +1,11 @@
 <ion-content padding class="content">
-
+<ion-row>
+  <ion-col col-12>
+    <button class="back-btn" clear ion-button icon-left (click)="onGoBackClick()" *ngIf="isLoggedInClicked">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-col>
+</ion-row>
   <ion-row justify-content-center class="logo-row" [@zoomOut]="isLoggedInClicked" [@zoomIn]="!isLoggedInClicked">
     <ion-col col-12>
       <ion-avatar *ngIf="!isKeyBoardOpen">
