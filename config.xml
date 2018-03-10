@@ -3,7 +3,7 @@
     <name>prezuraApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.8.102:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -80,6 +80,8 @@
     <allow-navigation href="http://192.168.8.101:8101" />
     <allow-navigation href="http://192.168.8.101:8100" />
     <allow-navigation href="http://192.168.8.102:8100" />
+    <allow-navigation href="http://10.101.2.38:8100" />
+    <allow-navigation href="http://192.168.2.9:8100" />
     <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="363752390758111" />

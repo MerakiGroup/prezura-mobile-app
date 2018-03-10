@@ -1,78 +1,99 @@
-<ion-content padding>
-  <div *ngIf="isLoggedIn">
-    <h2>Hi, {{user.name}} ({{user.email}})</h2>
-    <p>
-      Gender: {{user.gender}}
-    </p>
-    <p>
-      <img src="{{user.imageUrl}}" width="100" alt="{{user.name}}"/>
-    </p>
-    <p>
-      <button ion-button icon-right (click)="onLogoutClick()">
-        Logout
-      </button>
-    </p>
+<ion-content padding class="content">
+
+  <ion-row justify-content-center class="logo-row" [@zoomOut]="isLoggedInClicked" [@zoomIn]="!isLoggedInClicked">
+    <ion-col col-12>
+      <ion-avatar *ngIf="!isKeyBoardOpen">
+        <img src="assets/imgs/logo-2.png">
+      </ion-avatar>
+    </ion-col>
+  </ion-row>
+
+  <div [@fadeOut]="isLoggedInClicked" *ngIf="!isLoggedInClicked">
+    <ng-container>
+      <ion-row>
+        <ion-col col-12>
+          <button class="facebook" ion-button icon-right (click)="onFacebookLoginClick()">
+            Login with
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <button class="g-plus" ion-button icon-right (click)="onGoogleLoginClick()">
+            Login with
+            <ion-icon name="logo-googleplus"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button color="secondary" class="auth-btn" clear (click)="isLoggedInClicked = !isLoggedInClicked">
+            Log
+            In
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button color="secondary" class="auth-btn" clear>Sign Up</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <div class="privacy-policy">By signing up you agree to the <b>Terms of Service</b> and <b>Privacy Policy</b>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
   </div>
 
+  <div [@fadeIn]="!isLoggedInClicked" *ngIf="isLoggedInClicked">
+    <ion-row>
+      <ion-col col-12>
+        <form [formGroup]="loginForm" novalidate class="form-wrapper">
+          <ion-row>
+            <ion-col>
+              <ion-list inset>
+                <ion-item>
+                  <ion-label floating>Email</ion-label>
+                  <ion-input clearInput
+                             type="text"
+                             formControlName="email"
+                             (focus)="onFocus($event)"
+                             (blur)="onBlur($event)">
+                  </ion-input>
+                </ion-item>
 
-  <div class="login-container" *ngIf="!isLoggedIn">
-    <div class="login-header">
-      <h1>Login with Facebook or Google.</h1>
-    </div>
-    <div class="login-buttons">
-      <button class="facebook" ion-button icon-right (click)="loginWithFacebook()">
-        Login with
-        <ion-icon name="logo-facebook"></ion-icon>
-      </button>
+                <ion-item>
+                  <ion-label floating>Password</ion-label>
+                  <ion-input clearInput
+                             [type]="isPasswordField ? 'password': 'text'"
+                             formControlName="password"
+                             (focus)="onFocus($event)"
+                             (blur)="onBlur($event)">
+                  </ion-input>
+                  <!--<button ion-button clear item-end (click)='isPasswordField = !isPasswordField' style="height:32px;">-->
+                    <!--<ion-icon name="eye" style="font-size:32px;"></ion-icon>-->
+                  <!--</button>-->
+                </ion-item>
+                <ion-item></ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
 
-      <button class="g-plus" ion-button icon-right (click)="loginWithGPlus()">
-        Login with
-        <ion-icon name="logo-googleplus"></ion-icon>
-      </button>
-    </div>
-
-    <div class="horizontal-line or">
-      <h2>
-        <span>Or</span>
-      </h2>
-    </div>
-    <div class="login-form">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="form-wrapper">
-        <ion-row>
-          <ion-col>
-            <ion-list inset>
-              <ion-item>
-                <ion-label floating>Email</ion-label>
-                <ion-input type="text" formControlName="email"></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-label floating>Password</ion-label>
-                <ion-input type="password" formControlName="password"></ion-input>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-
-        <button ion-button full type="submit">Login</button>
-
-        <!--<ion-row>-->
-          <!--<ion-col>-->
-            <!--<ion-list>-->
-              <!--<ion-item>-->
-                <!--<a>Forgot password?</a>-->
-                <!--<div class="text-center">-->
-                  <!--Don't have an account?-->
-                  <!--<a (click)="onSignUpClick()">-->
-                    <!--Register with us.-->
-                  <!--</a>-->
-                <!--</div>-->
-              <!--</ion-item>-->
-            <!--</ion-list>-->
-          <!--</ion-col>-->
-        <!--</ion-row>-->
-
-      </form>
-    </div>
+          <button class="submit-btn" ion-button full type="submit" (click)="onSubmit()">Login</button>
+        </form>
+      </ion-col>
+    </ion-row>
   </div>
+
 </ion-content>
+
+
+
+
+
+
+
