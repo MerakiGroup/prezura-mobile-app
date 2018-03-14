@@ -23,6 +23,11 @@ import { HomePage } from '../pages/home/home';
 import { GlobalDataService } from '../providers/global-data-service/global-data-service';
 import { UserAuthService } from '../providers/user-auth-service/user-auth-service';
 
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+
+const config: SocketIoConfig = { url: 'http://192.168.2.9:3001', options: {} };
+
 @NgModule({
   bootstrap: [IonicApp],
   declarations: [
@@ -43,7 +48,8 @@ import { UserAuthService } from '../providers/user-auth-service/user-auth-servic
     GuideMePageModule,
     NotificationsPageModule,
     ProfilePageModule,
-    ContainerPageModule
+    ContainerPageModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     StatusBar,
