@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import * as hm from 'heatmap.js';
 
-declare const h337: any;
+// declare const h337: any;
 
 interface Point {
   x: number;
@@ -13,21 +14,20 @@ interface Point {
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements AfterViewInit {
+export class HomePage {
 
   private data: Point[];
   private heatmap: any;
 
   constructor(public navCtrl: NavController) {
-
   }
 
   @ViewChild('div')
   public div: any;
 
 
-  ngAfterViewInit() {
-    this.heatmap = h337.create({
+  ionViewDidLoad() {
+    this.heatmap = hm.create({
       container: this.div.nativeElement
     });
     this.data = this.generatePoints();

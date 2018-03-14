@@ -98,4 +98,7 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <allow-navigation href="http://172.31.99.167:8100" />
     <allow-navigation href="http://192.168.8.103:8100" />
+    <allow-navigation href="http://10.101.9.143:8101" />
+    <allow-navigation href="http://10.101.10.38:8101" />
+    <allow-navigation href="http://192.168.2.9:8101" />
 </widget>
