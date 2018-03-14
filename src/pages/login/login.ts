@@ -4,12 +4,16 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import { UserAuthResponse } from './login.models';
+
 import { ContainerPage } from '../container/container';
+import { SignupPage } from '../signup/signup';
+
 import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
 
 import { animations } from './login.animations';
-import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Class representing the Login page.
@@ -89,7 +93,7 @@ export class LoginPage implements OnDestroy {
    * Invokes when the login with google plus button clicked.
    */
   public onGoogleLoginClick(): void {
-    let loading: Loading = this.loadingCtrl.create({
+    const loading: Loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.userAuthService.loginWithGoogle(loading);
@@ -115,7 +119,7 @@ export class LoginPage implements OnDestroy {
    * Event handler for sign up link click.
    */
   public onSignUpClick(): void {
-
+    this.navCtrl.push(SignupPage);
   }
 
   /**

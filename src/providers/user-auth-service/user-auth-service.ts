@@ -9,6 +9,9 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { UserAuthResponse } from '../../pages/login/login.models';
+import { HttpClient } from '@angular/common/http';
+
+export const apiEndPoint = 'http://192.168.8.101:3000';
 
 @Injectable()
 export class UserAuthService {
@@ -16,7 +19,7 @@ export class UserAuthService {
   private isUserLoggedIn: boolean;
   private isFacebookLogin: boolean;
 
-  constructor(private facebook: Facebook, private googlePlus: GooglePlus, private nativeStorage: NativeStorage) {
+  constructor(private facebook: Facebook, private googlePlus: GooglePlus, private nativeStorage: NativeStorage, private http: HttpClient) {
   }
 
   /**
@@ -75,6 +78,15 @@ export class UserAuthService {
    */
   public getLoginState(): Observable<boolean> {
     return this.onLogin.asObservable();
+  }
+
+  /**
+   * User sign up api call.
+   * @param userData User data
+   * @returns {Observable<any>}
+   */
+  public userSignup(userData): Observable<any> {
+    return this.http.post(`${apiEndPoint}/api/user/signup`, userData);
   }
 
   /**

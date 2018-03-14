@@ -2,10 +2,10 @@ import { NavController } from 'ionic-angular';
 
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 
-import * as hm from 'heatmap.js';
-import { Socket } from 'ng-socket-io';
 import { Observable } from 'rxjs/Observable';
-// declare const h337: any;
+
+import * as heatMap from 'heatmap.js';
+import { Socket } from 'ng-socket-io';
 
 interface Point {
   x: number;
@@ -18,44 +18,52 @@ interface Point {
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild('div')
+  public div: any;
 
   private data: Point[];
-  private heatmap: any;
+  private heatMap: any;
 
   constructor(public navCtrl: NavController, private socket: Socket) {
-    this.getMessages().subscribe((response: {data: Point[]}) => {
+    this.getHeatMapData().subscribe((response: { data: Point[] }) => {
       this.data = response.data;
-      this.heatmap.setData({
+      this.heatMap.setData({
         data: this.data,
         max: 5
       });
     });
   }
 
-  @ViewChild('div')
-  public div: any;
-
-
-  ionViewDidLoad() {
-    this.heatmap = hm.create({
+  /**
+   * On ionic view did load.
+   */
+  public ionViewDidLoad(): void {
+    this.heatMap = heatMap.create({
       container: this.div.nativeElement
     });
     this.data = this.generatePoints();
-    this.heatmap.setData({
-      data: this.data,
-      max: 5
-    });
+    const data = this.data ? this.data : this.generatePoints();
+    this.setHeatMapData(data);
   }
 
-  public onRandomDataClick(): void {
+  /**
+   * Event handler for onConnectClick
+   */
+  public onConnectClick(): void {
     this.socket.connect();
-    this.data = this.generatePoints();
-    this.heatmap.setData({
-      data: this.data,
-      max: 5
-    });
   }
 
+  /**
+   * Event handler for onConnectClick
+   */
+  public onDisconnectClick(): void {
+    this.socket.disconnect();
+  }
+
+  /**
+   * Generates random data set for heat map.
+   * @returns {Point[]} Generated heat map data.
+   */
   private generatePoints(): Point[] {
     const points: Point[] = [];
 
@@ -68,19 +76,41 @@ export class HomePage {
         }
       );
     }
+    this.setHeatMapData(points);
     return points;
   }
 
+  /**
+   * Generates a random number.
+   * @param {number} max Maximum value of genrated number.
+   * @returns {number} Generated number.
+   */
   private getRandomInt(max: number) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  private getMessages() {
+  /**
+   * Returns a Observable for subscribed for socket data fech eveent.
+   * @returns {Observable<any>} Observer
+   */
+  private getHeatMapData() {
     const observable = new Observable(observer => {
       this.socket.on('data', (data) => {
         observer.next(data);
       });
     });
     return observable;
+  }
+
+  /**
+   * Set heat map data.
+   * @param {Point[]} data Heat map data
+   */
+  private setHeatMapData(data: Point[]): void {
+    this.data = data;
+    this.heatMap.setData({
+      data: this.data,
+      max: 5
+    });
   }
 }
