@@ -29,7 +29,7 @@ export const animations = [
       style({
         opacity: 0
       }),
-      animate('1500ms 0ms ease-out')
+      animate('1000ms 0ms ease-out')
     ])
   ]),
 
@@ -39,7 +39,7 @@ export const animations = [
     })),
     transition('void => *', [
       style({ opacity: 0 }),
-      animate('1500ms 500ms ease-in')
+      animate('1000ms 500ms ease-in')
     ])
   ])
 ];

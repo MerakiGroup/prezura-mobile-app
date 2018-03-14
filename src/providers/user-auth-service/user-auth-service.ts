@@ -1,6 +1,7 @@
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Loading } from 'ionic-angular';
 
 import { Injectable } from '@angular/core';
 
@@ -38,7 +39,7 @@ export class UserAuthService {
   /**
    * Using google api to log in the user.
    */
-  public loginWithGoogle(): void {
+  public loginWithGoogle(loading: Loading): void {
     this.googlePlus.login({})
       .then(res => {
         const user = {
@@ -53,8 +54,10 @@ export class UserAuthService {
         this.isUserLoggedIn = true;
         this.isFacebookLogin = false;
         this.onLogin.next(true);
+        loading.dismiss();
       }).catch((error) => {
       // toDo log
+      loading.dismiss();
     });
   }
 

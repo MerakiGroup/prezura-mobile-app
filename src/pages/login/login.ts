@@ -1,4 +1,4 @@
-import { AlertController, IonicPage, NavController } from 'ionic-angular';
+import { AlertController, IonicPage, Loading, LoadingController, NavController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { Component, OnDestroy } from '@angular/core';
@@ -38,7 +38,8 @@ export class LoginPage implements OnDestroy {
               public alertCtrl: AlertController,
               private formBuilder: FormBuilder,
               private userAuthService: UserAuthService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private loadingCtrl: LoadingController) {
 
     this.isLoggedIn = false;
     this.isSubmitted = false;
@@ -88,7 +89,10 @@ export class LoginPage implements OnDestroy {
    * Invokes when the login with google plus button clicked.
    */
   public onGoogleLoginClick(): void {
-    this.userAuthService.loginWithGoogle();
+    let loading: Loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.userAuthService.loginWithGoogle(loading);
   }
 
 

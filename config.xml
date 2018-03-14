@@ -3,7 +3,7 @@
     <name>prezuraApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.8.101:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -96,4 +96,6 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.489940237658-cggvu6uo1u2ip0or1gjqnd5hnfnfofh3" />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
+    <allow-navigation href="http://172.31.99.167:8100" />
+    <allow-navigation href="http://192.168.8.103:8100" />
 </widget>
