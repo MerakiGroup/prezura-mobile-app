@@ -62,7 +62,7 @@ const config: SocketIoConfig = { url: apiEndPoint, options: {} };
     NativeStorage,
     UserAuthService,
     Facebook,
-    GooglePlus,
+    GooglePlus
   ]
 })
 export class AppModule {
