@@ -26,8 +26,10 @@ export const animations = [
       transform: 'translate(0px,80px) scale(0.7,0.7) ',
     })),
     transition('* => *', [
-      style({ opacity: 0 }),
-      animate('1500ms 0ms ease-out')
+      style({
+        opacity: 0
+      }),
+      animate('1000ms 0ms ease-out')
     ])
   ]),
 
@@ -37,7 +39,7 @@ export const animations = [
     })),
     transition('void => *', [
       style({ opacity: 0 }),
-      animate('1500ms 500ms ease-in')
+      animate('1000ms 500ms ease-in')
     ])
   ])
 ];

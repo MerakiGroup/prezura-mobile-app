@@ -85,7 +85,7 @@
     <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="363752390758111" />
-        <variable name="APP_NAME" value="prezuraApp" />
+        <variable name="APP_NAME" value="Prezura" />
     </plugin>
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
@@ -96,4 +96,9 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.489940237658-cggvu6uo1u2ip0or1gjqnd5hnfnfofh3" />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
+    <allow-navigation href="http://172.31.99.167:8100" />
+    <allow-navigation href="http://192.168.8.103:8100" />
+    <allow-navigation href="http://10.101.9.143:8101" />
+    <allow-navigation href="http://10.101.10.38:8101" />
+    <allow-navigation href="http://192.168.2.9:8101" />
 </widget>

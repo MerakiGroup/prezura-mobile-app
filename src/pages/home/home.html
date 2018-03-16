@@ -7,4 +7,25 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content>
+  <img src="assets/imgs/footprints.png" class="foot-print">
+  <div #div style="width: 95%; height: 55%;"></div>
+  <ion-row>
+    <ion-col col-12>
+<br>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-12>
+      <button ion-button icon-right (click)="onConnectClick()" class="random-data">
+        Connect
+      </button>
+      <button ion-button icon-right (click)="onDisconnectClick()" class="random-data">
+        Disconnect
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
 

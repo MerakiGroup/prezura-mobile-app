@@ -46,7 +46,7 @@ export class ContainerPage {
   }
 
   public ionViewDidEnter(): void {
-    this.tabRef.select(1);
+    // this.tabRef.select(1);
     this.tabRef.select(0);
   }
 

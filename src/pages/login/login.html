@@ -1,5 +1,4 @@
 <ion-content padding class="content">
-
   <ion-row justify-content-center class="logo-row" [@zoomOut]="isLoggedInClicked" [@zoomIn]="!isLoggedInClicked">
     <ion-col col-12>
       <ion-avatar *ngIf="!isKeyBoardOpen">
@@ -36,7 +35,7 @@
           </button>
         </ion-col>
         <ion-col col-6>
-          <button ion-button color="secondary" class="auth-btn" clear>Sign Up</button>
+          <button ion-button color="secondary" class="auth-btn" clear (click)="onSignUpClick()">Sign Up</button>
         </ion-col>
       </ion-row>
 
@@ -75,7 +74,7 @@
                              (blur)="onBlur($event)">
                   </ion-input>
                   <!--<button ion-button clear item-end (click)='isPasswordField = !isPasswordField' style="height:32px;">-->
-                    <!--<ion-icon name="eye" style="font-size:32px;"></ion-icon>-->
+                  <!--<ion-icon name="eye" style="font-size:32px;"></ion-icon>-->
                   <!--</button>-->
                 </ion-item>
                 <ion-item></ion-item>
@@ -84,6 +83,7 @@
           </ion-row>
 
           <button class="submit-btn" ion-button full type="submit" (click)="onSubmit()">Login</button>
+          <button ion-button color="secondary" class="auth-btn" clear (click)="onGoBackClick()">Use Identity Providers </button>
         </form>
       </ion-col>
     </ion-row>

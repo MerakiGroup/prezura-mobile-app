@@ -1,15 +1,19 @@
-import { AlertController, IonicPage, NavController } from 'ionic-angular';
+import { AlertController, IonicPage, Loading, LoadingController, NavController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import { UserAuthResponse } from './login.models';
+
 import { ContainerPage } from '../container/container';
+import { SignupPage } from '../signup/signup';
+
 import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
 
 import { animations } from './login.animations';
-import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Class representing the Login page.
@@ -38,7 +42,8 @@ export class LoginPage implements OnDestroy {
               public alertCtrl: AlertController,
               private formBuilder: FormBuilder,
               private userAuthService: UserAuthService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private loadingCtrl: LoadingController) {
 
     this.isLoggedIn = false;
     this.isSubmitted = false;
@@ -65,22 +70,6 @@ export class LoginPage implements OnDestroy {
   }
 
   /**
-   * Event handler for input field focus event.
-   * @param eventPayLoad Event payload.
-   */
-  onFocus(eventPayLoad): void {
-    this.isKeyBoardOpen = true;
-  }
-
-  /**
-   * Event handler for input field blur event.
-   * @param eventPayLoad Event payload.
-   */
-  onBlur(eventPayLoad): void {
-    this.isKeyBoardOpen = false;
-  }
-
-  /**
    * On component destroy.
    */
   public ngOnDestroy(): void {
@@ -104,7 +93,10 @@ export class LoginPage implements OnDestroy {
    * Invokes when the login with google plus button clicked.
    */
   public onGoogleLoginClick(): void {
-    this.userAuthService.loginWithGoogle();
+    const loading: Loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.userAuthService.loginWithGoogle(loading);
   }
 
 
@@ -127,7 +119,30 @@ export class LoginPage implements OnDestroy {
    * Event handler for sign up link click.
    */
   public onSignUpClick(): void {
+    this.navCtrl.push(SignupPage);
+  }
 
+  /**
+   * Event handler for input field focus event.
+   * @param eventPayLoad Event payload.
+   */
+  public onFocus(eventPayLoad): void {
+    this.isKeyBoardOpen = true;
+  }
+
+  /**
+   * Event handler for input field blur event.
+   * @param eventPayLoad Event payload.
+   */
+  public onBlur(eventPayLoad): void {
+    this.isKeyBoardOpen = false;
+  }
+
+  /**
+   * Event handler for go back click.
+   */
+  public onGoBackClick(): void {
+    this.isLoggedInClicked = false;
   }
 
   /**

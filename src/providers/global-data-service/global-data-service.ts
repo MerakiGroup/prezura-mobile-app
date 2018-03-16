@@ -11,7 +11,7 @@ export class GlobalDataService {
   }
 
   public openSideMenu(): void {
-    this.isSideMenuOpen.next(true)
+    this.isSideMenuOpen.next(true);
   }
 
   public closeSideMenu(): void {

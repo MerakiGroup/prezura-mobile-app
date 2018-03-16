@@ -16,12 +16,18 @@ import { StatsPageModule } from '../pages/stats/stats.module';
 import { NotificationsPageModule } from '../pages/notifications/notifications.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ContainerPageModule } from '../pages/container/container.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { GlobalDataService } from '../providers/global-data-service/global-data-service';
-import { UserAuthService } from '../providers/user-auth-service/user-auth-service';
+import { apiEndPoint, UserAuthService } from '../providers/user-auth-service/user-auth-service';
+
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { HttpClientModule } from '@angular/common/http';
+
+const config: SocketIoConfig = { url: apiEndPoint, options: {} };
 
 @NgModule({
   bootstrap: [IonicApp],
@@ -43,7 +49,10 @@ import { UserAuthService } from '../providers/user-auth-service/user-auth-servic
     GuideMePageModule,
     NotificationsPageModule,
     ProfilePageModule,
-    ContainerPageModule
+    ContainerPageModule,
+    SocketIoModule.forRoot(config),
+    SignupPageModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

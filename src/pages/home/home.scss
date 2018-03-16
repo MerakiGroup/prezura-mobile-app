@@ -1,3 +1,16 @@
 page-home {
+  .foot-print {
+    position: absolute;
+    z-index: 100;
+    width: 88%;
+    height: 72%;
+  }
+  .heat-map {
+    width: 80%;
+    height: 40%;
+  }
 
+  .random-data {
+    margin-top: 120px;
+  }
 }
