@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserAuthResponse } from '../../pages/login/login.models';
 import { HttpClient } from '@angular/common/http';
 
-export const apiEndPoint = 'http://192.168.8.101:3000';
+export const apiEndPoint = 'http://192.168.8.104:3000';
 
 @Injectable()
 export class UserAuthService {
