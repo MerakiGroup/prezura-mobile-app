@@ -101,4 +101,7 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.489940237658-cggvu6uo1u2ip0or1gjqnd5hnfnfofh3" />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
+    <plugin name="cordova-android-play-services-gradle-release" spec="^1.2.1">
+        <variable name="PLAY_SERVICES_VERSION" value="12.+" />
+    </plugin>
 </widget>
