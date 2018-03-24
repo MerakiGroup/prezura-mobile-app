@@ -32,6 +32,8 @@ export class HomePage {
         max: 5
       });
     });
+    this.socket.connect();
+    this.socket.emit('getData');
   }
 
   /**
@@ -51,6 +53,7 @@ export class HomePage {
    */
   public onConnectClick(): void {
     this.socket.connect();
+    this.socket.emit('getData');
   }
 
   /**
