@@ -19,7 +19,7 @@ export class NotificationsPage {
   bloodPressure = 0;
   bpColor = "";
   diabLegs = 0;
-  dlColor: "";
+  dlColor = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
