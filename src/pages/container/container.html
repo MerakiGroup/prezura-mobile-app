@@ -2,10 +2,17 @@
   <ion-header>
     <ion-toolbar>
       <ion-avatar class="avatar">
-        <img [src]="user?.imageUrl">
+        <img src="./../../assets/imgs/test-user.jpg">
       </ion-avatar>
       <ion-title>{{user?.firstName}}</ion-title>
+
+      <button ion-button icon-right (click)="redirectToProfile()">
+        Edit Profile
+        <ion-icon name="ios-create-outline"></ion-icon>
+      </button>
+
     </ion-toolbar>
+
   </ion-header>
 
   <ion-content>
@@ -23,9 +30,9 @@
 
 <ion-content padding>
   <ion-tabs #myTabs>
-    <ion-tab [root]="homePage" tabIcon="home"></ion-tab>
-    <ion-tab [root]="statsPage" tabTitle="Stats"></ion-tab>
-    <ion-tab [root]="notificationsPage" tabTitle="Alerts"></ion-tab>
-    <ion-tab [root]="guideMePage" tabTitle="Guide me"></ion-tab>
+    <ion-tab [root]="homePage" tabIcon="ios-home-outline"></ion-tab>
+    <ion-tab [root]="statsPage" tabIcon="ios-stats-outline"></ion-tab>
+    <ion-tab [root]="notificationsPage" tabIcon="ios-alert-outline"></ion-tab>
+    <ion-tab [root]="guideMePage" tabIcon="ios-help-circle-outline"></ion-tab>
   </ion-tabs>
 </ion-content>
