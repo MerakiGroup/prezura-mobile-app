@@ -32,7 +32,7 @@ $ ionic serve
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
- [<img src="https://avatars0.githubusercontent.com/u/24251976?s=400&v=4" width="100px;"/><br /><sub>Anuradha Gunasekara</sub>][anuradha-profile]| [<img src="https://avatars0.githubusercontent.com/u/19856069?s=400&v=4" width="100px;"/><br /><sub>Charith Wickramsinghe</sub>][charith-profile]| [<img src="https://avatars0.githubusercontent.com/u/19645544?s=400&v=4" width="100px;"/><br /><sub>Janith Kasun</sub>][janith-profile]|[<img src="https://avatars0.githubusercontent.com/u/17147255?s=400&v=4" width="100px;"/><br /><sub>Saiyaff Farouk</sub>][saiyaff-profile]|
+ [<img src="https://avatars0.githubusercontent.com/u/24251976?s=400&v=4" width="100px;"/><br /><sub>Anuradha Gunasekara</sub>][anuradha-profile]| [<img src="https://avatars0.githubusercontent.com/u/19856069?s=400&v=4" width="100px;"/><br /><sub>Charith Wickramasinghe</sub>][charith-profile]| [<img src="https://avatars0.githubusercontent.com/u/19645544?s=400&v=4" width="100px;"/><br /><sub>Janith Kasun</sub>][janith-profile]|[<img src="https://avatars0.githubusercontent.com/u/17147255?s=400&v=4" width="100px;"/><br /><sub>Saiyaff Farouk</sub>][saiyaff-profile]|
 | :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
