@@ -29,7 +29,7 @@ export class HomePage {
       this.data = response.data;
       this.heatMap.setData({
         data: this.data,
-        max: 5
+        max: 255
       });
     });
     this.socket.connect();
@@ -113,7 +113,7 @@ export class HomePage {
     this.data = data;
     this.heatMap.setData({
       data: this.data,
-      max: 5
+      max: 255
     });
   }
 }
