@@ -33,6 +33,7 @@
     "angular-svg-round-progressbar": "^1.2.1",
     "chart.js": "^2.7.2",
     "cordova-android": "6.3.0",
+    "cordova-android-play-services-gradle-release": "^1.2.1",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-googleplus": "^5.2.1",
@@ -69,7 +70,10 @@
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.489940237658-cggvu6uo1u2ip0or1gjqnd5hnfnfofh3"
       },
-      "cordova-plugin-nativestorage": {}
+      "cordova-plugin-nativestorage": {},
+      "cordova-android-play-services-gradle-release": {
+        "PLAY_SERVICES_VERSION": "12.+"
+      }
     },
     "platforms": [
       "android"

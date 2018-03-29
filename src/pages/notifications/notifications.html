@@ -9,29 +9,29 @@
 
 
 <ion-content padding>
-  <ion-grid>
+  <ion-grid class="alert-progress">
     <ion-row style="padding-bottom: 50px">
       <ion-col text-center>
         <circle-progress [percent]="bloodPressure" [radius]="50" [outerStrokeWidth]="4" [innerStrokeWidth]="2" [outerStrokeColor]="bpColor"
           [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300" [title]=""></circle-progress>
-        <div>Blood Pressure</div>
+        <div class="name">Blood Pressure</div>
       </ion-col>
       <ion-col text-center>
         <circle-progress [percent]="bloodPressure" [radius]="50" [outerStrokeWidth]="4" [innerStrokeWidth]="2" [outerStrokeColor]="bpColor"
           [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300" [title]=""></circle-progress>
-        <div>Blood Pressure</div>
+        <div class="name">Blood Pressure</div>
       </ion-col>
     </ion-row>
     <ion-row style="padding-bottom: 50px">
       <ion-col text-center>
         <circle-progress [percent]="diabLegs" [radius]="50" [outerStrokeWidth]="4" [innerStrokeWidth]="2" [outerStrokeColor]="dlColor"
           [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300" [title]=""></circle-progress>
-        <div>Diabetes Legs</div>
+        <div class="name">Diabetes Legs</div>
       </ion-col>
       <ion-col text-center>
         <circle-progress [percent]="85" [radius]="50" [outerStrokeWidth]="4" [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'"
           [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300" [title]=""></circle-progress>
-        <div>Fracture</div>
+        <div class="name">Fracture</div>
       </ion-col>
     </ion-row>
   </ion-grid>

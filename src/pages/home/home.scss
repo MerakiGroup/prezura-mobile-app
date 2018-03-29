@@ -3,7 +3,7 @@ page-home {
     position: absolute;
     z-index: 100;
     width: 88%;
-    height: 72%;
+    height: 70%;
   }
   .heat-map {
     width: 80%;
@@ -11,6 +11,31 @@ page-home {
   }
 
   .random-data {
-    margin-top: 120px;
+    min-width: 100px;
+    margin-top: 80px;
+  }
+
+  // User info
+  .info {
+    padding-top: 1em;
+    .value {
+      color: $font-white;
+      font-size: 1.8em;
+      padding-top: 0.3em;
+      padding-bottom: 0.3em;
+      font-weight: 100;
+    }
+    .value-zoom {
+      color: $font-white;
+      font-size: 2.5em;
+      padding-bottom: 0.08em;
+      font-weight: 300;
+    }
+    .name {
+      color: #bfd45d;
+    }
+    .unit {
+      color: #5f6879;
+    }
   }
 }

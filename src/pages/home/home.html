@@ -10,22 +10,40 @@
 <ion-content>
   <img src="assets/imgs/footprints.png" class="foot-print">
   <div #div style="width: 95%; height: 55%;"></div>
-  <ion-row>
-    <ion-col col-12>
-<br>
-    </ion-col>
-  </ion-row>
 
   <ion-row>
     <ion-col col-12>
-      <button ion-button icon-right (click)="onConnectClick()" class="random-data">
+      <button ion-button float-left round icon-right (click)="onConnectClick()" class="random-data">
         Connect
       </button>
-      <button ion-button icon-right (click)="onDisconnectClick()" class="random-data">
-        Disconnect
+      <button ion-button float-right round color="danger" icon-right (click)="onDisconnectClick()" class="random-data">
+        Stop
       </button>
     </ion-col>
   </ion-row>
+
+  <ion-grid>
+    <ion-row text-center class="info">
+
+      <ion-col>
+        <div class="value"> 171 </div>
+        <div text-uppercase color="font-white" class="name"> Something </div>
+        <div class="unit">aBk</div>
+      </ion-col>
+
+      <ion-col>
+        <div class="value-zoom"> 151 </div>
+        <div text-uppercase class="name"> Steps </div>
+        <div class="unit">deF</div>
+      </ion-col>
+
+      <ion-col>
+        <div class="value">1.0</div>
+        <div text-uppercase class="name"> Something </div>
+        <div class="unit">kT</div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
-
-
