@@ -8,9 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <img src="assets/imgs/footprints.png" class="foot-print">
-  <div #div style="width: 95%; height: 55%;"></div>
 
+  <heatmap [heatmapPoints]="data"></heatmap>
   <ion-row>
     <ion-col col-12>
       <button ion-button float-left round icon-right (click)="onConnectClick()" class="random-data">

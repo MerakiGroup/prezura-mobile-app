@@ -30,6 +30,7 @@ import {
 import { SocketIoModule, SocketIoConfig } from "ng-socket-io";
 import { HttpClientModule } from "@angular/common/http";
 import { AlertServiceProvider } from "../providers/alert-service/alert-service";
+import { ComponentsModule } from "../components/components.module";
 
 const config: SocketIoConfig = { url: apiEndPoint, options: {} };
 
@@ -50,7 +51,8 @@ const config: SocketIoConfig = { url: apiEndPoint, options: {} };
     ContainerPageModule,
     SocketIoModule.forRoot(config),
     SignupPageModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [
     StatusBar,
