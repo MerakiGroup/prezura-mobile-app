@@ -2,6 +2,11 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Loading } from 'ionic-angular';
+import {
+  AuthenticationDetails,
+  CognitoUser,
+  CognitoUserPool
+} from 'amazon-cognito-identity-js';
 
 import { Injectable } from '@angular/core';
 
@@ -10,8 +15,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserAuthResponse } from '../../pages/login/login.models';
 import { HttpClient } from '@angular/common/http';
+import config from '../../assets/configuration';
 
-export const apiEndPoint = 'http://192.168.8.106:3000';
+export const apiEndPoint = 'http://192.168.8.103:3000';
 
 @Injectable()
 export class UserAuthService {
@@ -19,14 +25,41 @@ export class UserAuthService {
   private isUserLoggedIn: boolean;
   private isFacebookLogin: boolean;
 
-  constructor(private facebook: Facebook, private googlePlus: GooglePlus, private nativeStorage: NativeStorage, private http: HttpClient) {
-  }
+  constructor(
+    private facebook: Facebook,
+    private googlePlus: GooglePlus,
+    private nativeStorage: NativeStorage,
+    private http: HttpClient
+  ) {}
 
+  public loginUsingCognito = (username, password, callback) => {
+    const authDetails = new AuthenticationDetails({
+      Password: password,
+      Username: username
+    });
+
+    const userPool = new CognitoUserPool({
+      ClientId: config.AWS.Cognito.clientId,
+      UserPoolId: config.AWS.Cognito.userPoolId
+    });
+
+    const user = new CognitoUser({ Username: username, Pool: userPool });
+
+    user.authenticateUser(authDetails, {
+      onFailure: err => {
+        callback.cognitoCallback(err.message, null);
+      },
+      onSuccess: result => {
+        callback.cognitoCallback(null, result);
+      }
+    });
+  };
   /**
    * Using facebook api to log in th user.
    */
   public loginWithFacebook(): void {
-    this.facebook.login(['public_profile', 'user_friends', 'email'])
+    this.facebook
+      .login(['public_profile', 'user_friends', 'email'])
       .then((response: FacebookLoginResponse) => {
         if (response.status === 'connected') {
           this.getUserDetail(response.authResponse.userID);
@@ -34,16 +67,18 @@ export class UserAuthService {
           this.isFacebookLogin = true;
           this.onLogin.next(true);
         }
-      }).catch((error) => {
-      // toDo log
-    });
+      })
+      .catch(error => {
+        // toDo log
+      });
   }
 
   /**
    * Using google api to log in the user.
    */
   public loginWithGoogle(loading: Loading): void {
-    this.googlePlus.login({})
+    this.googlePlus
+      .login({})
       .then(res => {
         const user = {
           email: res.email,
@@ -58,15 +93,18 @@ export class UserAuthService {
         this.isFacebookLogin = false;
         this.onLogin.next(true);
         loading.dismiss();
-      }).catch((error) => {
-      // toDo log
-      loading.dismiss();
-    });
+      })
+      .catch(error => {
+        // toDo log
+        loading.dismiss();
+      });
   }
 
   public logOut(): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.isFacebookLogin ? this.logoutFromFacebook() : this.logoutFromGoogle();
+    return new Promise(resolve => {
+      this.isFacebookLogin
+        ? this.logoutFromFacebook()
+        : this.logoutFromGoogle();
       this.onLogin.next(false);
       resolve(true);
     });
@@ -93,26 +131,30 @@ export class UserAuthService {
    * Responsible for log out the user from facebook api.
    */
   private logoutFromFacebook(): void {
-    this.facebook.logout()
+    this.facebook
+      .logout()
       .then(res => {
         this.removeUserFromNativeStorage();
         this.isUserLoggedIn = false;
-      }).catch((error) => {
-      // toDo log
-    });
+      })
+      .catch(error => {
+        // toDo log
+      });
   }
 
   /**
    * Responsible for log out the user from google api.
    */
   private logoutFromGoogle(): void {
-    this.googlePlus.logout()
+    this.googlePlus
+      .logout()
       .then(res => {
         this.removeUserFromNativeStorage();
         this.isUserLoggedIn = false;
-      }).catch((error) => {
-      // toDo log
-    });
+      })
+      .catch(error => {
+        // toDo log
+      });
   }
 
   /**
@@ -120,8 +162,11 @@ export class UserAuthService {
    * @param userId User ID.
    */
   private getUserDetail(userId) {
-    this.facebook.api('/' + userId + '/?fields=id,email,name,picture,gender', ['public_profile'])
-      .then((response) => {
+    this.facebook
+      .api('/' + userId + '/?fields=id,email,name,picture,gender', [
+        'public_profile'
+      ])
+      .then(response => {
         const user = {
           email: response.email,
           firstName: response.name,
@@ -131,9 +176,10 @@ export class UserAuthService {
           lastName: ''
         };
         this.saveUserToNativeStorage(user);
-      }).catch((error) => {
-      // toDo log
-    });
+      })
+      .catch(error => {
+        // toDo log
+      });
   }
 
   /**

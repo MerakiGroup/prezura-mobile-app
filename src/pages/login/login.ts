@@ -1,5 +1,12 @@
-import { AlertController, IonicPage, Loading, LoadingController, NavController } from 'ionic-angular';
+import {
+  AlertController,
+  IonicPage,
+  Loading,
+  LoadingController,
+  NavController
+} from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
+import {} from 'amazon-cognito-identity-js';
 
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +22,8 @@ import { UserAuthService } from '../../providers/user-auth-service/user-auth-ser
 
 import { animations } from './login.animations';
 
+import config from '../../assets/configuration';
+
 /**
  * Class representing the Login page.
  * @class LoginPage.
@@ -23,28 +32,29 @@ import { animations } from './login.animations';
 @Component({
   animations: animations,
   selector: 'page-login',
-  templateUrl: 'login.html',
+  templateUrl: 'login.html'
 })
 export class LoginPage implements OnDestroy {
-
   public user: UserAuthResponse;
   public loginForm: FormGroup;
   public isSubmitted: boolean;
   public isLoggedInClicked: boolean;
   public isKeyBoardOpen: boolean;
   public isPasswordField: boolean;
+  public loading: any;
 
   private isLoggedIn: boolean;
   private userSubscription: Subscription;
   private keyBoardSubscription: Subscription;
 
-  constructor(public navCtrl: NavController,
-              public alertCtrl: AlertController,
-              private formBuilder: FormBuilder,
-              private userAuthService: UserAuthService,
-              private nativeStorage: NativeStorage,
-              private loadingCtrl: LoadingController) {
-
+  constructor(
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    private formBuilder: FormBuilder,
+    private userAuthService: UserAuthService,
+    private nativeStorage: NativeStorage,
+    private loadingCtrl: LoadingController
+  ) {
     this.isLoggedIn = false;
     this.isSubmitted = false;
     this.isLoggedInClicked = false;
@@ -99,7 +109,6 @@ export class LoginPage implements OnDestroy {
     this.userAuthService.loginWithGoogle(loading);
   }
 
-
   /**
    * Event handler for logout button click.
    */
@@ -112,7 +121,35 @@ export class LoginPage implements OnDestroy {
    */
   public onSubmit(): void {
     this.isSubmitted = true;
-    this.navCtrl.push(ContainerPage);
+    console.log(this.loginForm.value);
+    const { email, password } = this.loginForm.value;
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+
+    this.userAuthService.loginUsingCognito(email, password, this);
+  }
+
+  cognitoCallback = (message, result) => {
+    this.loading.dismiss();
+    console.log('callback');
+    if (message) {
+      console.log('inside this message');
+      this.loading.dismiss();
+    }
+
+    if (result) {
+      console.log('inside this result');
+
+      this.navCtrl.push(ContainerPage);
+    }
+  };
+
+  public async signInUsingCognito(username, password) {
+    console.log('user', username);
+
+    console.log('cognitoUser', user);
   }
 
   /**
@@ -150,7 +187,10 @@ export class LoginPage implements OnDestroy {
    */
   private buildForm(): void {
     this.loginForm = this.formBuilder.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
+      email: [
+        null,
+        Validators.compose([Validators.required, Validators.email])
+      ],
       password: [null, Validators.required],
       rememberMe: [false]
     });
@@ -161,12 +201,17 @@ export class LoginPage implements OnDestroy {
    * @returns {boolean} Return true if user is logged in.
    */
   private userLoggedIn(): void {
-    this.nativeStorage.getItem('user').then((user) => {
-      if (user) {
-        this.navCtrl.push(ContainerPage);
+    this.nativeStorage.getItem('user').then(
+      user => {
+        if (user) {
+          this.navCtrl.push(ContainerPage);
+        }
+      },
+      error => {
+        // toDo
       }
-    }, (error) => {
-      // toDo
-    });
+    );
   }
+
+  public authenticateUsingCognito() {}
 }

@@ -18,19 +18,12 @@ interface Point {
   templateUrl: 'home.html'
 })
 export class HomePage {
-  @ViewChild('div')
-  public div: any;
-
-  private data: Point[];
+  public data: Point[];
   private heatMap: any;
 
   constructor(public navCtrl: NavController, private socket: Socket) {
     this.getHeatMapData().subscribe((response: { data: Point[] }) => {
       this.data = response.data;
-      this.heatMap.setData({
-        data: this.data,
-        max: 255
-      });
     });
     this.socket.connect();
     this.socket.emit('getData');
@@ -40,12 +33,12 @@ export class HomePage {
    * On ionic view did load.
    */
   public ionViewDidLoad(): void {
-    this.heatMap = heatMap.create({
-      container: this.div.nativeElement
-    });
-    this.data = this.generatePoints();
-    const data = this.data ? this.data : this.generatePoints();
-    this.setHeatMapData(data);
+    // this.heatMap = heatMap.create({
+    //   container: this.div.nativeElement
+    // });
+    // this.data = this.generatePoints();
+    // const data = this.data ? this.data : this.generatePoints();
+    // this.setHeatMapData(data);
   }
 
   /**
@@ -71,13 +64,11 @@ export class HomePage {
     const points: Point[] = [];
 
     for (let i = 0; i < 500; i++) {
-      points.push(
-        {
-          value: this.getRandomInt(5),
-          x: this.getRandomInt(600),
-          y: this.getRandomInt(600)
-        }
-      );
+      points.push({
+        value: this.getRandomInt(5),
+        x: this.getRandomInt(600),
+        y: this.getRandomInt(600)
+      });
     }
     this.setHeatMapData(points);
     return points;
@@ -98,7 +89,7 @@ export class HomePage {
    */
   private getHeatMapData() {
     const observable = new Observable(observer => {
-      this.socket.on('data', (data) => {
+      this.socket.on('data', data => {
         observer.next(data);
       });
     });
