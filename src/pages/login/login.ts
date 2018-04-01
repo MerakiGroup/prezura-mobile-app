@@ -149,8 +149,6 @@ export class LoginPage implements OnDestroy {
 
   public async signInUsingCognito(username, password) {
     console.log('user', username);
-
-    console.log('cognitoUser', this.user);
   }
 
   /**
