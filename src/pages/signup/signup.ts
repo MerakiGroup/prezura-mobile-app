@@ -20,7 +20,12 @@ export class SignupPage {
 
   public signUpForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private userService: UserAuthService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private userService: UserAuthService
+  ) {
     this.buildForm();
   }
 

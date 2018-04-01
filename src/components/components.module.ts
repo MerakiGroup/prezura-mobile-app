@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { HeatmapComponent } from './heatmap/heatmap';
+
 @NgModule({
-	declarations: [HeatmapComponent],
+	declarations: [
+		HeatmapComponent
+	],
 	imports: [],
-	exports: [HeatmapComponent]
+	exports: [
+		HeatmapComponent
+	]
 })
-export class ComponentsModule {}
+
+export class ComponentsModule { }

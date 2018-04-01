@@ -17,7 +17,7 @@ import { UserAuthResponse } from '../../pages/login/login.models';
 import { HttpClient } from '@angular/common/http';
 import config from '../../assets/configuration';
 
-export const apiEndPoint = 'http://192.168.8.103:3000';
+export const apiEndPoint = 'http://192.168.8.100:3000';
 
 @Injectable()
 export class UserAuthService {
@@ -30,7 +30,7 @@ export class UserAuthService {
     private googlePlus: GooglePlus,
     private nativeStorage: NativeStorage,
     private http: HttpClient
-  ) {}
+  ) { }
 
   public loginUsingCognito = (username, password, callback) => {
     const authDetails = new AuthenticationDetails({
@@ -53,7 +53,7 @@ export class UserAuthService {
         callback.cognitoCallback(null, result);
       }
     });
-  };
+  }
   /**
    * Using facebook api to log in th user.
    */
