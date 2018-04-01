@@ -2,11 +2,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Loading } from 'ionic-angular';
-import {
-  AuthenticationDetails,
-  CognitoUser,
-  CognitoUserPool
-} from 'amazon-cognito-identity-js';
+
 
 import { Injectable } from '@angular/core';
 
@@ -16,8 +12,9 @@ import { Observable } from 'rxjs/Observable';
 import { UserAuthResponse } from '../../pages/login/login.models';
 import { HttpClient } from '@angular/common/http';
 import config from '../../assets/configuration';
+import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
-export const apiEndPoint = 'http://192.168.8.103:3000';
+export const apiEndPoint = 'http://192.168.8.104:3000';
 
 @Injectable()
 export class UserAuthService {
@@ -25,12 +22,11 @@ export class UserAuthService {
   private isUserLoggedIn: boolean;
   private isFacebookLogin: boolean;
 
-  constructor(
-    private facebook: Facebook,
-    private googlePlus: GooglePlus,
-    private nativeStorage: NativeStorage,
-    private http: HttpClient
-  ) {}
+  constructor(private facebook: Facebook,
+              private googlePlus: GooglePlus,
+              private nativeStorage: NativeStorage,
+              private http: HttpClient) {
+  }
 
   public loginUsingCognito = (username, password, callback) => {
     const authDetails = new AuthenticationDetails({
@@ -53,7 +49,8 @@ export class UserAuthService {
         callback.cognitoCallback(null, result);
       }
     });
-  };
+  }
+
   /**
    * Using facebook api to log in th user.
    */
