@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: "page-notifications",
-  templateUrl: "notifications.html"
+  selector: 'page-notifications',
+  templateUrl: 'notifications.html'
 })
 export class NotificationsPage {
 
@@ -32,7 +32,7 @@ export class NotificationsPage {
 
   public generateRandomValue(): number {
     return Math.random() * (this.max - this.min) + this.min;
-  };
+  }
 
   public getColorCode(value): string {
     if (value > 0 && value < 25) {
