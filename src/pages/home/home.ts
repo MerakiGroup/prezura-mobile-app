@@ -20,8 +20,9 @@ interface Point {
 export class HomePage {
   public data: Point[];
   private heatMap: any;
+  public title = 'Prezura';
 
-  constructor(public navCtrl: NavController, private socket: Socket) {
+  constructor(private socket: Socket) {
     this.getHeatMapData().subscribe((response: { data: Point[] }) => {
       this.data = response.data;
     });
