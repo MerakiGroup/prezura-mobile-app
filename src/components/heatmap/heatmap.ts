@@ -5,20 +5,14 @@ import {
   OnChanges,
   ViewChild
 } from '@angular/core';
+
 import * as heatMap from 'heatmap.js';
 
-/**
- * Generated class for the HeatmapComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { Point } from '../../models/heatmap-point';
 
-interface Point {
-  x: number;
-  y: number;
-  value: number;
-}
+/**
+ * Component representing HeatMap Component.
+ */
 @Component({
   selector: 'heatmap',
   templateUrl: 'heatmap.html'
@@ -35,23 +29,30 @@ export class HeatmapComponent implements OnChanges, AfterViewInit {
 
   @Input() public max = 255;
 
-  // private data: Point[];
   private heatMap: any;
 
-  constructor() {}
-
+  /**
+   * On data bind changes.
+   * @param changes Data bind changes.
+   */
   public ngOnChanges(changes: any): void {
     if (changes.heatmapPoints.currentValue) {
       this.setHeatMapData();
     }
   }
 
+  /**
+   * On after view init.
+   */
   public ngAfterViewInit(): void {
     this.heatMap = heatMap.create({
       container: this.div.nativeElement
     });
   }
 
+  /**
+   * Responsible for setting/updating heat map data points.
+   */
   private setHeatMapData(): void {
     this.heatMap.setData({
       data: this.data,

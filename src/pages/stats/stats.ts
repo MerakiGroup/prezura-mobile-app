@@ -4,6 +4,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { Socket } from 'ng-socket-io';
 import { PressureData, UserStatsService } from '../../providers/user-stats-service/user-stats-service';
+import { SocketService } from '../../providers/socket-service/socket-service';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,7 @@ export class StatsPage {
   private labels: string[];
   private defaultConfigs: any;
 
-  constructor(public navCtrl: NavController, private userStatsService: UserStatsService, private socket: Socket) {
+  constructor(private userStatsService: UserStatsService, private socketService: SocketService) {
     this.leftFootData = [50, 20, 78, 63, 77, 10, 45];
     this.rightFootData = [60, 10, 40, 30, 80, 30, 20];
     this.labels = ['10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM'];
@@ -51,56 +52,15 @@ export class StatsPage {
       this.userStatsService.addPressureData(this.lineChart, res.label, res.data);
       this.userStatsService.removePressureData(this.lineChart);
     });
-    // setInterval(() => {
-    //   debugger;
-    //   const label = this.getDateTimeString();
-    //   const left = this.getRandomInt(100);
-    //   const right = this.getRandomInt(100);
-    //   const data = {
-    //     left,
-    //     right
-    //   };
-    //   this.userStatsService.addPressureData(this.lineChart, label, data);
-    //   this.userStatsService.removePressureData(this.lineChart);
-    // }, 1500);
-    this.socket.connect();
-    this.socket.emit('getPressureData');
+    this.socketService.connect();
+    this.socketService.emit('getPressureData');
   }
 
-  ionViewDidLoad() {
+  public ionViewDidLoad(): void {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, this.defaultConfigs);
     this.userStatsService.initializePressureChart(this.lineChart, this.labels, {
       left: this.leftFootData,
       right: this.rightFootData
     });
-  }
-
-  /**
-   * Generates a random number.
-   * @param {number} max Maximum value of genrated number.
-   * @returns {number} Generated number.
-   */
-  private getRandomInt(max: number) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
-
-  /**
-   * Generates random data set for heat map.
-   * @returns {Point[]} Generated heat map data.
-   */
-  private generatePoints(): number[] {
-    const points = [];
-
-    for (let i = 0; i < 6; i++) {
-      points.push(
-        this.getRandomInt(100)
-      );
-    }
-    return points;
-  }
-
-  private getDateTimeString(): string {
-    const date = new Date();
-    return `${date.getHours()} : ${date.getMinutes()}: ${date.getSeconds()}`;
   }
 }

@@ -31,6 +31,7 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 import { ComponentsModule } from '../components/components.module';
+import { SocketService } from '../providers/socket-service/socket-service';
 
 const config: SocketIoConfig = { url: apiEndPoint, options: {} };
 
@@ -63,7 +64,9 @@ const config: SocketIoConfig = { url: apiEndPoint, options: {} };
     UserAuthService,
     Facebook,
     GooglePlus,
-    AlertServiceProvider
+    AlertServiceProvider,
+    SocketService
   ]
 })
-export class AppModule { }
+export class AppModule {
+}
