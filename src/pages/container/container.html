@@ -3,13 +3,14 @@
     <ion-toolbar>
       <ion-avatar class="avatar">
         <img src="./../../assets/imgs/test-user.jpg">
+
+        <button ion-button icon-right (click)="redirectToProfile()">
+          Edit Profile
+          <ion-icon name="ios-create-outline"></ion-icon>
+        </button>
+
       </ion-avatar>
       <ion-title>{{user?.firstName}}</ion-title>
-
-      <button ion-button icon-right (click)="redirectToProfile()">
-        Edit Profile
-        <ion-icon name="ios-create-outline"></ion-icon>
-      </button>
 
     </ion-toolbar>
 

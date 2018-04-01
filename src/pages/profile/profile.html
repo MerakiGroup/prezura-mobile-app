@@ -15,4 +15,54 @@
 
 <ion-content padding>
 
+  <!-- bind the image dynamically here later -->
+  <ion-avatar class="avatar">
+    <img src="./../../assets/imgs/test-user.jpg">
+
+  </ion-avatar>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked> Name </ion-label>
+      <ion-input type="text" placeholder="Jon Doe"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Username </ion-label>
+      <ion-input type="text" placeholder="@jondoe"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Email </ion-label>
+      <ion-input type="email" placeholder="jondoe@something.com"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Gender </ion-label>
+      <ion-select>
+        <ion-option value="" disabled selected>Select your option</ion-option>
+        <ion-option value="male">Male</ion-option>
+        <ion-option value="female">Female</ion-option>
+        <ion-option value="other">Other</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Height </ion-label>
+      <ion-input type="text" placeholder="143 cm"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked> Weight </ion-label>
+      <ion-input type="text" placeholder="56kg"></ion-input>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item> -->
+
+  </ion-list>
+
 </ion-content>

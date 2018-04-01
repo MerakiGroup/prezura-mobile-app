@@ -5,8 +5,8 @@ export interface AlertData {
 
 export interface UserAuthResponse {
   id: string;
-  firstName: string,
-  lastName: string,
+  firstName: string;
+  lastName: string;
   email: string;
   imageUrl: string;
   gender: string;

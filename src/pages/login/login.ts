@@ -6,7 +6,7 @@ import {
   NavController
 } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
-import {} from 'amazon-cognito-identity-js';
+import { } from 'amazon-cognito-identity-js';
 
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,6 +34,7 @@ import config from '../../assets/configuration';
   selector: 'page-login',
   templateUrl: 'login.html'
 })
+
 export class LoginPage implements OnDestroy {
   public user: UserAuthResponse;
   public loginForm: FormGroup;
@@ -144,7 +145,7 @@ export class LoginPage implements OnDestroy {
 
       this.navCtrl.push(ContainerPage);
     }
-  };
+  }
 
   public async signInUsingCognito(username, password) {
     console.log('user', username);
@@ -211,5 +212,6 @@ export class LoginPage implements OnDestroy {
     );
   }
 
-  public authenticateUsingCognito() {}
+  public authenticateUsingCognito() { }
+
 }

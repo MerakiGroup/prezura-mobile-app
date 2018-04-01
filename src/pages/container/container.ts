@@ -10,6 +10,7 @@ import { StatsPage } from '../stats/stats';
 import { NotificationsPage } from '../notifications/notifications';
 import { GuideMePage } from '../guide-me/guide-me';
 import { LoginPage } from '../login/login';
+import { ProfilePage } from '../profile/profile';
 
 import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
 
@@ -34,8 +35,11 @@ export class ContainerPage {
 
   public user: UserAuthResponse;
 
-  constructor(public navCtrl: NavController,
-              private nativeStorage: NativeStorage, private userAuthService: UserAuthService) {
+  constructor(
+    public navCtrl: NavController,
+    private nativeStorage: NativeStorage,
+    private userAuthService: UserAuthService
+  ) {
     this.pages = [
       { title: 'Home', page: HomePage },
       { title: 'Stats', page: StatsPage },
@@ -48,6 +52,10 @@ export class ContainerPage {
   public ionViewDidEnter(): void {
     // this.tabRef.select(1);
     this.tabRef.select(0);
+  }
+
+  public redirectToProfile(): void {
+    this.navCtrl.push(ProfilePage);
   }
 
   public openPage(page): void {

@@ -1,10 +1,14 @@
-import { NgModule } from "@angular/core";
-import { IonicPageModule } from "ionic-angular";
-import { NotificationsPage } from "./notifications";
-import { NgCircleProgressModule } from "ng-circle-progress";
+import { NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
+
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
+import { NotificationsPage } from './notifications';
 
 @NgModule({
-  declarations: [NotificationsPage],
+  declarations: [
+    NotificationsPage
+  ],
   imports: [
     IonicPageModule.forChild(NotificationsPage),
     NgCircleProgressModule.forRoot({
@@ -12,10 +16,11 @@ import { NgCircleProgressModule } from "ng-circle-progress";
       radius: 100,
       outerStrokeWidth: 16,
       innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
+      outerStrokeColor: '#78C000',
+      innerStrokeColor: '#C7E596',
       animationDuration: 300
     })
   ]
 })
-export class NotificationsPageModule {}
+
+export class NotificationsPageModule { }
