@@ -2,8 +2,7 @@
   <ion-header>
     <ion-toolbar>
       <ion-avatar class="avatar">
-        <img src="./../../assets/imgs/test-user.jpg">
-
+        <img [src]="user?.image">
         <button ion-button icon-right (click)="redirectToProfile()">
           Edit Profile
           <ion-icon name="ios-create-outline"></ion-icon>

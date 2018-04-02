@@ -9,19 +9,20 @@
 
 
 <ion-content padding>
-  <div>
-    <ion-card>
-      <div #div style="width: 95%; height: 55%; color:aliceblue"></div>
-      <ion-card-content>
-        <ion-card-title>
-          Nine Inch Nails Live
-        </ion-card-title>
-        <p>
-          The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <!-- <div> -->
+  <ion-card class="guide-me-card" (click)="openModal()">
+    <img src="assets/imgs/guide-me/feet-balance.png" />
+    <ion-card-content>
+      <ion-card-title class="card-title">
+        Unbalance detected!
+      </ion-card-title>
+      <p class="card-description">
+        There is an unbalance detected in your pressure distribution. Please expand to view in detail
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- </div> -->
 
 
 </ion-content>
