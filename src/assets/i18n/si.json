@@ -1,0 +1,31 @@
+{
+  "CONTAINER_PAGE": {
+    "EDIT_PROFILE": "පැතිකඩ සංස්කරණය කරන්න",
+    "PAGE_TITLE": "{{value}}"
+  },
+  "HOME_PAGE": {
+    "CONNECT": "සම්බන්ධ කරන්න",
+    "DISCONNECT": "විසන්ධි කරන්න"
+  },
+  "PROFILE_PAGE": {
+    "PROFILE": "පැතිකඩ",
+    "NAME": "නම",
+    "USERNAME":"පරිශීලක නාමය",
+    "EMAIL": "විද්යුත් තැපෑල",
+    "GENDER": "ස්ත්රී පුරුෂ භාවය",
+    "SELECT": "ඔබේ විකල්පය තෝරන්න",
+    "MALE": "පිරිමි",
+    "FEMALE": "ගැහැණු",
+    "OTHER": "වෙනත්",
+    "HEIGHT": "උස",
+    "WEIGHT": "බර"
+  },
+  "LANGUAGE_PAGE": {
+    "TITLE": "භාෂා සැකසුම්",
+    "LANGUAGE": "භාෂාව",
+    "ENGLISH": "English",
+    "SPANISH": "Español",
+    "GERMAN": "Deutsche",
+    "SINHALA": "සිංහල"
+  }
+}

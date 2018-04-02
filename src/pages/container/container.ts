@@ -13,6 +13,8 @@ import { LoginPage } from '../login/login';
 import { ProfilePage } from '../profile/profile';
 
 import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
+import { LanguageSettingsPageModule } from '../language-settings/language-settings.module';
+import { LanguageSettingsPage } from '../language-settings/language-settings';
 
 @IonicPage()
 @Component({
@@ -35,16 +37,15 @@ export class ContainerPage {
 
   public user: UserAuthResponse;
 
-  constructor(
-    public navCtrl: NavController,
-    private nativeStorage: NativeStorage,
-    private userAuthService: UserAuthService
-  ) {
+  constructor(public navCtrl: NavController,
+              private nativeStorage: NativeStorage,
+              private userAuthService: UserAuthService) {
     this.pages = [
       { title: 'Home', page: HomePage },
       { title: 'Stats', page: StatsPage },
       { title: 'Alerts', page: NotificationsPage },
       { title: 'Guide Me', page: GuideMePage },
+      { title: 'Language Settings', page: LanguageSettingsPage }
     ];
     this.getUserData();
   }
@@ -62,7 +63,11 @@ export class ContainerPage {
     const index = this.pages.findIndex((item) => {
       return item.title === page.title;
     });
-    this.tabRef.select(index);
+    if (index && index < 4) {
+      this.tabRef.select(index);
+    } else {
+      this.navCtrl.push(page.page);
+    }
   }
 
   public onLogOutClick(): void {
