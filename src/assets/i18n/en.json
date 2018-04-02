@@ -1,0 +1,31 @@
+{
+  "CONTAINER_PAGE": {
+    "EDIT_PROFILE": "Edit profile",
+    "PAGE_TITLE": "{{value}}"
+  },
+  "HOME_PAGE": {
+    "CONNECT": "Connect",
+    "DISCONNECT": "Disconnect"
+  },
+  "PROFILE_PAGE": {
+    "PROFILE": "Profile",
+    "NAME": "Name",
+    "USERNAME":"User name",
+    "EMAIL": "Email",
+    "GENDER": "Gender",
+    "SELECT": "Seleccione su opción",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "OTHER": "Other",
+    "HEIGHT": "Height",
+    "WEIGHT": "Weight"
+  },
+  "LANGUAGE_PAGE": {
+    "TITLE": "Language Settings",
+    "LANGUAGE": "Language",
+    "ENGLISH": "English",
+    "SPANISH": "Español",
+    "GERMAN": "Deutsche",
+    "SINHALA": "සිංහල"
+  }
+}

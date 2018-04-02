@@ -28,12 +28,20 @@ import {
 } from '../providers/user-auth-service/user-auth-service';
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-import { HttpClientModule } from '@angular/common/http';
 import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 import { ComponentsModule } from '../components/components.module';
 import { SocketService } from '../providers/socket-service/socket-service';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LanguageSettingsPageModule } from '../pages/language-settings/language-settings.module';
 const config: SocketIoConfig = { url: apiEndPoint, options: {} };
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   bootstrap: [IonicApp],
@@ -53,7 +61,15 @@ const config: SocketIoConfig = { url: apiEndPoint, options: {} };
     SocketIoModule.forRoot(config),
     SignupPageModule,
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    LanguageSettingsPageModule,
+    TranslateModule.forRoot({
+      loader: {
+        deps: [HttpClient],
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+      }
+    })
   ],
   providers: [
     StatusBar,

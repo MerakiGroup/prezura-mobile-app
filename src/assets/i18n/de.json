@@ -1,0 +1,10 @@
+{
+  "CONTAINER_PAGE": {
+    "EDIT_PROFILE": "Profil bearbeiten",
+    "PAGE_TITLE": "{{value}}"
+  },
+  "HOME_PAGE": {
+    "CONNECT": "Verbinden",
+    "DISCONNECT": "Trennen"
+  },
+}

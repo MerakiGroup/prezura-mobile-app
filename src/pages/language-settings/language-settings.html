@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'LANGUAGE_PAGE.TITLE' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list radio-group>
+    <ion-list-header>
+      {{'LANGUAGE_PAGE.LANGUAGE' | translate}}
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label> {{'LANGUAGE_PAGE.ENGLISH' | translate}}</ion-label>
+      <ion-radio checked="true" value="en" (ionSelect)="onSelect($event)"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>  {{'LANGUAGE_PAGE.SPANISH' | translate}}</ion-label>
+      <ion-radio value="es" (ionSelect)="onSelect($event)"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>  {{'LANGUAGE_PAGE.GERMAN' | translate}}</ion-label>
+      <ion-radio value="de" (ionSelect)="onSelect($event)"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>  {{'LANGUAGE_PAGE.SINHALA' | translate}}</ion-label>
+      <ion-radio value="si" (ionSelect)="onSelect($event)"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
