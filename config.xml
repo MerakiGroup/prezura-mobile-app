@@ -87,6 +87,8 @@
     <allow-navigation href="http://10.101.9.143:8101" />
     <allow-navigation href="http://10.101.10.38:8101" />
     <allow-navigation href="http://192.168.2.9:8101" />
+    <allow-navigation href="http://192.168.8.100:8100" />
+    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="363752390758111" />
         <variable name="APP_NAME" value="prezuraApp" />
@@ -103,6 +105,4 @@
     <plugin name="cordova-android-play-services-gradle-release" spec="^1.2.1">
         <variable name="PLAY_SERVICES_VERSION" value="12.+" />
     </plugin>
-    <allow-navigation href="http://192.168.8.100:8100" />
-    <engine name="android" spec="6.3.0" />
 </widget>
