@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Correct Walking Patterns</ion-title>
+    <ion-title>My Walking Guide</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,11 +13,12 @@
   <ion-card class="guide-me-card" (click)="openModal()">
     <img src="assets/imgs/guide-me/feet-balance.png" />
     <ion-card-content>
-      <ion-card-title class="card-title">
+      <ion-card-header class="card-title">
         Unbalance detected!
-      </ion-card-title>
+      </ion-card-header>
       <p class="card-description">
-        There is an unbalance detected in your pressure distribution. Please expand to view in detail
+        There is an unbalance detected in your foot plantar pressure distribution.
+        <i> Please expand to view in detail </i>
       </p>
     </ion-card-content>
   </ion-card>

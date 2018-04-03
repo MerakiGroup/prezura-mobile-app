@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import config from '../../assets/configuration';
 import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
-export const apiEndPoint = 'http://192.168.1.43:3000';
+export const apiEndPoint = 'http://192.168.8.100:3000';
 
 @Injectable()
 export class UserAuthService {
