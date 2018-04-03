@@ -15,6 +15,7 @@ import { ProfilePage } from '../profile/profile';
 import { UserAuthService } from '../../providers/user-auth-service/user-auth-service';
 import { LanguageSettingsPageModule } from '../language-settings/language-settings.module';
 import { LanguageSettingsPage } from '../language-settings/language-settings';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -39,7 +40,7 @@ export class ContainerPage {
 
   constructor(public navCtrl: NavController,
               private nativeStorage: NativeStorage,
-              private userAuthService: UserAuthService) {
+              private userAuthService: UserAuthService, private translateService: TranslateService) {
     this.pages = [
       { title: 'Home', page: HomePage },
       { title: 'Stats', page: StatsPage },
@@ -47,6 +48,13 @@ export class ContainerPage {
       { title: 'Guide Me', page: GuideMePage },
       { title: 'Language Settings', page: LanguageSettingsPage }
     ];
+    this.translateService.stream(['SIDE_MENU.HOME', 'SIDE_MENU.STATS', 'SIDE_MENU.ALERTS', 'SIDE_MENU.GUIDE_ME', 'SIDE_MENU.LANGUAGE_SETTINGS']).subscribe((res) => {
+      this.pages[0].title = res['SIDE_MENU.HOME'];
+      this.pages[1].title = res['SIDE_MENU.STATS'];
+      this.pages[2].title = res['SIDE_MENU.ALERTS'];
+      this.pages[3].title = res['SIDE_MENU.GUIDE_ME'];
+      this.pages[4].title = res['SIDE_MENU.LANGUAGE_SETTINGS'];
+    });
     this.getUserData();
   }
 

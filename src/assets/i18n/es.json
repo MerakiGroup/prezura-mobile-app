@@ -5,7 +5,8 @@
   },
   "HOME_PAGE": {
     "CONNECT": "Conectar",
-    "DISCONNECT": "Desconectar"
+    "DISCONNECT": "Desconectar",
+    "TITLE": "Prezura"
   },
   "PROFILE_PAGE": {
     "PROFILE": "Perfil",
@@ -13,7 +14,7 @@
     "USERNAME": "usuario",
     "EMAIL": "Correo electrónico",
     "GENDER": "Género",
-    "SELECT": "Select your option",
+    "SELECT": "Seleccione su opción",
     "MALE": "Masculino",
     "FEMALE": "Hembra",
     "OTHER": "Otro",
@@ -25,7 +26,24 @@
     "LANGUAGE": "Idioma",
     "ENGLISH": "English",
     "SPANISH": "Español",
-    "GERMAN": "Deutsche",
+    "FRENCH": "Français",
     "SINHALA": "සිංහල"
+  },
+  "SIDE_MENU": {
+    "HOME": "Casa",
+    "STATS": "Stats",
+    "ALERTS": "Alertas",
+    "GUIDE_ME": "Guía Yo",
+    "LANGUAGE_SETTINGS": "Idioma Configuraciones",
+    "LOGOUT": "Cerrar sesión"
+  },
+  "LOGIN_PAGE": {
+    "LOGIN_WITH": "Inicia con",
+    "LOG_IN": "Iniciar Sesión",
+    "SIGN_UP": "Regístrate",
+    "TERMS": "Al registrarte, aceptas los Términos de servicio y la Política de privacidad",
+    "EMAIL": "Email",
+    "PASSWORD": "Contraseña",
+    "USE_IDENTITY_PROVIDERS": "Usa proveedores de identidad"
   }
 }

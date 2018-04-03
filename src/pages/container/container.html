@@ -20,7 +20,7 @@
       <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">
         {{page.title}}
       </button>
-      <button menuClose ion-item (click)="onLogOutClick()">Logout</button>
+      <button menuClose ion-item (click)="onLogOutClick()"> {{'SIDE_MENU.LOGOUT' | translate}}</button>
     </ion-list>
   </ion-content>
 

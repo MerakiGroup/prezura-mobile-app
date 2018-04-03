@@ -1,0 +1,48 @@
+{
+  "CONTAINER_PAGE": {
+    "EDIT_PROFILE": "Profil bearbeiten",
+  },
+  "HOME_PAGE": {
+    "CONNECT": "Verbinden",
+    "DISCONNECT": "Trennen",
+    "TITLE": "Prezura"
+  },
+  "PROFILE_PAGE": {
+    "PROFILE": "Profil",
+    "NAME": "Name",
+    "USERNAME": "Nutzername",
+    "EMAIL": "Email",
+    "GENDER": "Geschlecht",
+    "SELECT": "Wählen Sie Ihre Option",
+    "MALE": "Männlich",
+    "FEMALE": "Weiblich",
+    "OTHER": "Andere",
+    "HEIGHT": "Höhe",
+    "WEIGHT": "Gewicht"
+  },
+  "LANGUAGE_PAGE": {
+    "TITLE": "Spracheinstellungens",
+    "LANGUAGE": "Sprache",
+    "ENGLISH": "English",
+    "SPANISH": "Español",
+    "FRENCH": "Français",
+    "SINHALA": "සිංහල"
+  },
+  "SIDE_MENU": {
+    "HOME": "Zuhause",
+    "STATS": "Statistiken",
+    "ALERTS": "Benachrichtigungen",
+    "GUIDE_ME": "Führe mich",
+    "LANGUAGE_SETTINGS": "Spracheinstellungens",
+    "LOGOUT": "Ausloggen"
+  },
+  "LOGIN_PAGE": {
+    "LOGIN_WITH": "Einloggen mit",
+    "LOG_IN": "Einloggen",
+    "SIGN_UP": "Anmelden",
+    "TERMS": "Mit Ihrer Anmeldung stimmen Sie den Nutzungsbedingungen und Datenschutzbestimmungen zu",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "USE_IDENTITY_PROVIDERS": "Verwenden Sie Identitätsanbieter"
+  }
+}

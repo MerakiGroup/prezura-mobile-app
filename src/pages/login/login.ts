@@ -127,22 +127,18 @@ export class LoginPage implements OnDestroy {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-    this.loading.present();
+    this.navCtrl.push(ContainerPage);
+    // this.loading.present();
 
-    this.userAuthService.loginUsingCognito(email, password, this);
+    // this.userAuthService.loginUsingCognito(email, password, this);
   }
 
   cognitoCallback = (message, result) => {
     this.loading.dismiss();
-    console.log('callback');
     if (message) {
-      console.log('inside this message');
       this.loading.dismiss();
     }
-
     if (result) {
-      console.log('inside this result');
-
       this.navCtrl.push(ContainerPage);
     }
   }

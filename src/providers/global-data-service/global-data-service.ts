@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class GlobalDataService {
 
+  private authToken: string;
+
   public isSideMenuOpen = new Subject<boolean>();
 
   constructor() {
@@ -20,5 +22,13 @@ export class GlobalDataService {
 
   public getMenuOpenState(): Observable<boolean> {
     return this.isSideMenuOpen.asObservable();
+  }
+
+  public setAuthToken(authToken: string): void {
+    this.authToken = authToken;
+  }
+
+  public getAuthToken(): string {
+    return this.authToken ? this.authToken : null;
   }
 }

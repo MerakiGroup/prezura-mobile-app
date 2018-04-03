@@ -12,7 +12,7 @@
       <ion-row>
         <ion-col col-12>
           <button class="facebook" ion-button icon-right (click)="onFacebookLoginClick()">
-            Login with
+            {{'LOGIN_PAGE.LOGIN_WITH' | translate}}
             <ion-icon name="logo-facebook"></ion-icon>
           </button>
         </ion-col>
@@ -21,7 +21,7 @@
       <ion-row>
         <ion-col col-12>
           <button class="g-plus" ion-button icon-right (click)="onGoogleLoginClick()">
-            Login with
+            {{'LOGIN_PAGE.LOGIN_WITH' | translate}}
             <ion-icon name="logo-googleplus"></ion-icon>
           </button>
         </ion-col>
@@ -30,19 +30,17 @@
       <ion-row>
         <ion-col col-6>
           <button ion-button color="secondary" class="auth-btn" clear (click)="isLoggedInClicked = !isLoggedInClicked">
-            Log In
+            {{'LOGIN_PAGE.LOG_IN' | translate}}
           </button>
         </ion-col>
         <ion-col col-6>
-          <button ion-button color="secondary" class="auth-btn" clear (click)="onSignUpClick()">Sign Up</button>
+          <button ion-button color="secondary" class="auth-btn" clear (click)="onSignUpClick()">{{'LOGIN_PAGE.SIGN_UP' | translate}}</button>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col col-12>
-          <div class="privacy-policy">By signing up you agree to the
-            <b>Terms of Service</b> and
-            <b>Privacy Policy</b>
+          <div class="privacy-policy">{{'LOGIN_PAGE.TERMS' | translate}}
           </div>
         </ion-col>
       </ion-row>
@@ -57,15 +55,22 @@
             <ion-col>
               <ion-list inset>
                 <ion-item>
-                  <ion-label floating>Email</ion-label>
-                  <ion-input clearInput type="text" formControlName="email" (focus)="onFocus($event)" (blur)="onBlur($event)">
+                  <ion-label floating>{{'LOGIN_PAGE.EMAIL' | translate}}</ion-label>
+                  <ion-input clearInput
+                             type="text"
+                             formControlName="email"
+                             (focus)="onFocus($event)"
+                             (blur)="onBlur($event)">
                   </ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label floating>Password</ion-label>
-                  <ion-input clearInput [type]="isPasswordField ? 'password': 'text'" formControlName="password" (focus)="onFocus($event)"
-                    (blur)="onBlur($event)">
+                  <ion-label floating>{{'LOGIN_PAGE.PASSWORD' | translate}}</ion-label>
+                  <ion-input clearInput
+                             [type]="isPasswordField ? 'password': 'text'"
+                             formControlName="password"
+                             (focus)="onFocus($event)"
+                             (blur)="onBlur($event)">
                   </ion-input>
                   <!--<button ion-button clear item-end (click)='isPasswordField = !isPasswordField' style="height:32px;">-->
                   <!--<ion-icon name="eye" style="font-size:32px;"></ion-icon>-->
@@ -76,8 +81,8 @@
             </ion-col>
           </ion-row>
 
-          <button class="submit-btn" ion-button full type="submit" (click)="onSubmit()">Login</button>
-          <button ion-button color="secondary" class="auth-btn" clear (click)="onGoBackClick()">Use Identity Providers </button>
+          <button class="submit-btn" ion-button full type="submit" (click)="onSubmit()">{{'LOGIN_PAGE.LOG_IN' | translate}}</button>
+          <button ion-button color="secondary" class="auth-btn" clear (click)="onGoBackClick()">{{'LOGIN_PAGE.USE_IDENTITY_PROVIDERS' | translate}} </button>
         </form>
       </ion-col>
     </ion-row>

@@ -32,11 +32,13 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 import { ComponentsModule } from '../components/components.module';
 import { SocketService } from '../providers/socket-service/socket-service';
+import { HttpInterceptorProvider } from '../providers/http-interceptor/http-interceptor';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LanguageSettingsPageModule } from '../pages/language-settings/language-settings.module';
+
 const config: SocketIoConfig = { url: apiEndPoint, options: {} };
 
 
@@ -83,7 +85,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     Facebook,
     GooglePlus,
     AlertServiceProvider,
-    SocketService
+    SocketService,
+    {
+      multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorProvider,
+    }
   ]
 })
 export class AppModule {
