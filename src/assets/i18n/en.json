@@ -1,19 +1,19 @@
 {
   "CONTAINER_PAGE": {
-    "EDIT_PROFILE": "Edit profile",
-    "PAGE_TITLE": "{{value}}"
+    "EDIT_PROFILE": "Edit profile"
   },
   "HOME_PAGE": {
     "CONNECT": "Connect",
-    "DISCONNECT": "Disconnect"
+    "DISCONNECT": "Disconnect",
+    "TITLE": "Prezura"
   },
   "PROFILE_PAGE": {
     "PROFILE": "Profile",
     "NAME": "Name",
-    "USERNAME":"User name",
+    "USERNAME": "User name",
     "EMAIL": "Email",
     "GENDER": "Gender",
-    "SELECT": "Seleccione su opción",
+    "SELECT": "Select your option",
     "MALE": "Male",
     "FEMALE": "Female",
     "OTHER": "Other",
@@ -25,7 +25,24 @@
     "LANGUAGE": "Language",
     "ENGLISH": "English",
     "SPANISH": "Español",
-    "GERMAN": "Deutsche",
+    "FRENCH": "Français",
     "SINHALA": "සිංහල"
+  },
+  "SIDE_MENU": {
+    "HOME": "Home",
+    "STATS": "Stats",
+    "ALERTS": "Alerts",
+    "GUIDE_ME": "Guide Me",
+    "LANGUAGE_SETTINGS": "Language Settings",
+    "LOGOUT": "Logout"
+  },
+  "LOGIN_PAGE": {
+    "LOGIN_WITH": "Login with",
+    "LOG_IN": "Log In",
+    "SIGN_UP": "Sign Up",
+    "TERMS": "By signing up you agree to the Terms of Service and Privacy Policy",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "USE_IDENTITY_PROVIDERS": "Use Identity providers"
   }
 }

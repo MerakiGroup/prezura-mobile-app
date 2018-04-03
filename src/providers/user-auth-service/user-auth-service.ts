@@ -22,12 +22,11 @@ export class UserAuthService {
   private isUserLoggedIn: boolean;
   private isFacebookLogin: boolean;
 
-  constructor(
-    private facebook: Facebook,
-    private googlePlus: GooglePlus,
-    private nativeStorage: NativeStorage,
-    private http: HttpClient
-  ) { }
+  constructor(private facebook: Facebook,
+              private googlePlus: GooglePlus,
+              private nativeStorage: NativeStorage,
+              private http: HttpClient) {
+  }
 
   public loginUsingCognito = (username, password, callback) => {
     const authDetails = new AuthenticationDetails({
@@ -51,6 +50,7 @@ export class UserAuthService {
       }
     });
   }
+
   /**
    * Using facebook api to log in th user.
    */

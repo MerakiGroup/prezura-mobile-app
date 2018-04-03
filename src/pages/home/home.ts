@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Point } from '../../models/heatmap-point';
 import { SocketService } from '../../providers/socket-service/socket-service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -17,9 +18,13 @@ export class HomePage implements OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private socketService: SocketService) {
+  constructor(private socketService: SocketService, private translateService: TranslateService) {
     this.subscription = this.socketService.getHeatMapData().subscribe((response: { data: Point[] }) => {
       this.data = response.data;
+    });
+    this.translateService.stream('HOME_PAGE.TITLE').subscribe((res) => {
+      debugger;
+      this.title = res;
     });
     this.socketService.connect();
     this.socketService.emit('getData');
