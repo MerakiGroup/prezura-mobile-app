@@ -17,6 +17,7 @@ import { NotificationsPageModule } from '../pages/notifications/notifications.mo
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ContainerPageModule } from '../pages/container/container.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
+import { GuideMeModalPageModule } from '../pages/guide-me-modal/guide-me-modal.module';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SignupPageModule,
     HttpClientModule,
     ComponentsModule,
+    GuideMeModalPageModule,
     LanguageSettingsPageModule,
     TranslateModule.forRoot({
       loader: {
