@@ -24,24 +24,13 @@
   <ion-grid>
     <ion-row text-center class="info">
 
-      <ion-col>
-        <div class="value"> 171 </div>
-        <div text-uppercase color="font-white" class="name"> Something </div>
-        <div class="unit">aBk</div>
-      </ion-col>
+      <div *ngIf="!toast">
+        Please connect to device!
+      </div>
 
-      <ion-col>
-        <div class="value-zoom"> 151 </div>
-        <div text-uppercase class="name"> Steps </div>
-        <div class="unit">deF</div>
-      </ion-col>
-
-      <ion-col>
-        <div class="value">1.0</div>
-        <div text-uppercase class="name"> Something </div>
-        <div class="unit">kT</div>
-      </ion-col>
-
+      <div *ngIf="toast">
+        Connected to the device!
+      </div>
     </ion-row>
   </ion-grid>
 

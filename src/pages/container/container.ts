@@ -48,7 +48,9 @@ export class ContainerPage {
       { title: 'Guide Me', page: GuideMePage },
       { title: 'Language Settings', page: LanguageSettingsPage }
     ];
-    this.translateService.stream(['SIDE_MENU.HOME', 'SIDE_MENU.STATS', 'SIDE_MENU.ALERTS', 'SIDE_MENU.GUIDE_ME', 'SIDE_MENU.LANGUAGE_SETTINGS']).subscribe((res) => {
+    this.translateService.stream(
+      ['SIDE_MENU.HOME', 'SIDE_MENU.STATS', 'SIDE_MENU.ALERTS', 'SIDE_MENU.GUIDE_ME', 'SIDE_MENU.LANGUAGE_SETTINGS'])
+      .subscribe((res) => {
       this.pages[0].title = res['SIDE_MENU.HOME'];
       this.pages[1].title = res['SIDE_MENU.STATS'];
       this.pages[2].title = res['SIDE_MENU.ALERTS'];

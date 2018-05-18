@@ -68,7 +68,7 @@ export class GuideMeModalPage implements OnDestroy {
   }
 
   /**
-   * getRandomInt() 
+   * getRandomInt()
    * @param max : number
    */
   private getRandomInt(max): number {

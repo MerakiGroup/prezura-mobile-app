@@ -39,6 +39,10 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <config-file parent="/resources" target="./res/values/strings.xml">
+            <string name="fb_app_id">363752390758111</string>
+            <string name="fb_app_name">prezuraApp</string>
+        </config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -88,7 +92,6 @@
     <allow-navigation href="http://10.101.10.38:8101" />
     <allow-navigation href="http://192.168.2.9:8101" />
     <allow-navigation href="http://192.168.8.100:8100" />
-    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="363752390758111" />
         <variable name="APP_NAME" value="prezuraApp" />
@@ -108,5 +111,7 @@
     <allow-navigation href="http://192.168.8.100:8100" />
     <allow-navigation href="http://192.168.1.43:8100" />
     <allow-navigation href="http://172.20.9.199:8100" />
-    <engine name="android" spec="6.3.0" />
+    <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.1.6:8101" />
+    <allow-navigation href="http://192.168.1.7:8100" />
 </widget>
