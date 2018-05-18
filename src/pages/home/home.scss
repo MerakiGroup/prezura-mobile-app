@@ -15,7 +15,7 @@ page-home {
     margin-top: 80px;
   }
 
-  // User info
+  // User info (removed for now)
   .info {
     padding-top: 1em;
     .value {
@@ -36,6 +36,24 @@ page-home {
     }
     .unit {
       color: #5f6879;
+    }
+  }
+
+  .connection-status-text {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    .status-text {
+      color: $font-white;
+    }
+  }
+
+  .connection-status-icon {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    .status-icon {
+      font-size: 2em;
     }
   }
 }
