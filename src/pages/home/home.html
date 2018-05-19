@@ -22,15 +22,16 @@
   </ion-row>
 
   <ion-grid>
-    <ion-row text-center class="info">
-
-      <div *ngIf="!toast">
+    <ion-row text-center class="connection-status-text">
+      <div *ngIf="!toast" [style.color]="'#f53d3d'" class="status-text">
         Please connect to device!
       </div>
-
-      <div *ngIf="toast">
-        Connected to the device!
+      <div *ngIf="toast" [style.color]="'#00B795'" class="status-text">
+        Connected to device!
       </div>
+    </ion-row>
+    <ion-row class="connection-status-icon">
+      <ion-icon name="power" [style.color]="toast ? '#00B795' : '#f53d3d'" class="status-icon" ></ion-icon>
     </ion-row>
   </ion-grid>
 
