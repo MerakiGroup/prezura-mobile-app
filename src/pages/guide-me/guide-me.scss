@@ -8,6 +8,11 @@ page-guide-me {
     }
     .card-description {
       color: #fff;
+      i {
+        margin-top: 10px;
+        display: flex;
+        color: #a9a9a9;
+      }
     }
   }
 }
