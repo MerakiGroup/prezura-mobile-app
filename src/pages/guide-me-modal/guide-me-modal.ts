@@ -79,7 +79,7 @@ export class GuideMeModalPage implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /**
-   * getRandomInt() 
+   * getRandomInt()
    * @param max : number
    */
   private getRandomInt(max): number {

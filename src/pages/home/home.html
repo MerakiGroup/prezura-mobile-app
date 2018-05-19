@@ -22,26 +22,16 @@
   </ion-row>
 
   <ion-grid>
-    <ion-row text-center class="info">
-
-      <ion-col>
-        <div class="value"> 171 </div>
-        <div text-uppercase color="font-white" class="name"> Something </div>
-        <div class="unit">aBk</div>
-      </ion-col>
-
-      <ion-col>
-        <div class="value-zoom"> 151 </div>
-        <div text-uppercase class="name"> Steps </div>
-        <div class="unit">deF</div>
-      </ion-col>
-
-      <ion-col>
-        <div class="value">1.0</div>
-        <div text-uppercase class="name"> Something </div>
-        <div class="unit">kT</div>
-      </ion-col>
-
+    <ion-row text-center class="connection-status-text">
+      <div *ngIf="!toast" [style.color]="'#f53d3d'" class="status-text">
+        Please connect to device!
+      </div>
+      <div *ngIf="toast" [style.color]="'#00B795'" class="status-text">
+        Connected to device!
+      </div>
+    </ion-row>
+    <ion-row class="connection-status-icon">
+      <ion-icon name="power" [style.color]="toast ? '#00B795' : '#f53d3d'" class="status-icon" ></ion-icon>
     </ion-row>
   </ion-grid>
 
