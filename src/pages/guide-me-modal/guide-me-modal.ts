@@ -1,4 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -7,13 +8,15 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { SocketService } from '../../providers/socket-service/socket-service';
 
 import { Point } from './../../models/heatmap-point';
+import { ServerService } from '../../providers/server-service/server-service';
 
 @IonicPage()
 @Component({
   selector: 'page-guide-me-modal',
   templateUrl: 'guide-me-modal.html',
+  providers: [ServerService]
 })
-export class GuideMeModalPage implements OnDestroy {
+export class GuideMeModalPage implements OnInit, OnDestroy, AfterViewInit {
 
   public data: Point[];
 
@@ -23,9 +26,13 @@ export class GuideMeModalPage implements OnDestroy {
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    private socketService: SocketService
-  ) {
-    this.data = this.generatePoints();
+    private http: HttpClient,
+    private socketService: SocketService,
+    private serverService: ServerService
+  ) { }
+
+  public ngOnInit(): void {
+    
   }
 
   /**
@@ -35,6 +42,10 @@ export class GuideMeModalPage implements OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  public ngAfterViewInit(): void {
+    this.getDisorderData();
   }
 
   /**
@@ -73,6 +84,13 @@ export class GuideMeModalPage implements OnDestroy {
    */
   private getRandomInt(max): number {
     return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  private getDisorderData():void {
+    this.subscription = this.serverService.getDisorderData().subscribe(disorderData => {
+      console.log(disorderData);
+      this.data = disorderData.data;
+    });
   }
 
 }

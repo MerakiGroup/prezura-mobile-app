@@ -54,9 +54,9 @@ export class HeatmapComponent implements OnChanges, AfterViewInit {
    * Responsible for setting/updating heat map data points.
    */
   private setHeatMapData(): void {
-    this.heatMap.setData({
-      data: this.data,
-      max: this.max
-    });
+      this.heatMap.setData({
+        data: this.data,
+        max: this.max
+      });
   }
 }
